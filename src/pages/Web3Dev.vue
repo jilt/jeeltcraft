@@ -36,6 +36,7 @@
       <h2>Smart contract dev certifications</h2>
       <div class="profile-links">
         <a href="https://ackee.xyz/" target="_blank" rel="noreferrer">Ackee School of Solana</a>
+        <a href="https://encode.club/" target="_blank" rel="noreferrer">ICP bootcamp</a>
         <a href="https://www.starknet.io/tutorial-type/basecamp-12/" target="_blank" rel="noreferrer">Starknet Foundation (Cairo)</a>
         <a href="https://www.hackquest.io/" target="_blank" rel="noreferrer">Linea Solidity dev</a>
         <a href="https://www.near.org/" target="_blank" rel="noreferrer">NEAR Foundation (Rust)</a>

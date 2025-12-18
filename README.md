@@ -1,2 +1,3 @@
 # jeeltcraft
-jeeltcraft.com home page
+
+Home page project showcase

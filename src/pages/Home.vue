@@ -169,14 +169,18 @@ onMounted(async () => {
     // collision / separation
     for (let i = 0; i < PARTICLES; i++) {
       const p1 = particles[i]
+      if (!p1) continue
+
       for (let j = i + 1; j < PARTICLES; j++) {
         const p2 = particles[j]
+        if (!p2) continue
+
         const dx = p2.x - p1.x
         const dy = p2.y - p1.y
         const dist = Math.sqrt(dx * dx + dy * dy)
         const minDist = p1.r + p2.r
 
-        if (dist > 0 && dist < minDist) {
+        if (dist < minDist) {
           const overlap = (minDist - dist) * 0.5
           const nx = dx / dist
           const ny = dy / dist

@@ -5,7 +5,7 @@
       <div class="home-overlay">
         <h1 ref="titleRef">creative dev</h1>
         <p>
-          Open-source product design for the next AI and Web3 wave.
+          Opensource product design for the next AI and Web3 wave.
         </p>
         <div class="home-actions">
           <button

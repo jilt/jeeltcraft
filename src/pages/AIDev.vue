@@ -22,6 +22,7 @@
         <a href="https://civitai.com/user/jilt" target="_blank" rel="noreferrer">Civitai</a>
         <a href="https://huggingface.co/jeeltcraft" target="_blank" rel="noreferrer">Hugging Face</a>
         <a href="https://www.seaart.ai/user/52c1a451078b4ed17f7cbcfec64bc78f?u_code=PILFOELI" target="_blank" rel="noreferrer">SeaArt</a>
+        <a href="https://ko-fi.com/jeeltcraft" target="_blank" rel="noreferrer">Commissions</a>
       </div>
     </section>
 

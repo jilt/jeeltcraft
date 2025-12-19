@@ -321,14 +321,14 @@ body {
 }
 
 /* random-ish tilts per position */
-.card:nth-child(6n + 1) { --rx: 12deg;  --ry: -10deg; --tz: 0px; }
+.card:nth-child(6n + 1) { --rx: 6deg;  --ry: -5deg; --tz: 0px; }
 .card:nth-child(6n + 2) { --rx: -6deg;   --ry: 22deg;  --tz: -8px; }
 .card:nth-child(6n + 3) { --rx: -14deg;  --ry: 6deg;  --tz: 3px; }
 .card:nth-child(6n + 4) { --rx: 8deg;   --ry: -12deg; --tz: -2px; }
-.card:nth-child(6n + 5) { --rx: 10deg;   --ry: -6deg;  --tz: 2px; }
-.card:nth-child(6n + 6) { --rx: -8deg;  --ry: 12deg;  --tz: -3px; }
-.card:nth-child(6n + 7) { --rx: 12deg;  --ry: -10deg; --tz: 0px; }
-.card:nth-child(6n + 8) { --rx: -6deg;   --ry: 22deg;  --tz: -8px; }
+.card:nth-child(6n + 5) { --rx: 5deg;   --ry: -6deg;  --tz: 2px; }
+.card:nth-child(6n + 6) { --rx: -8deg;  --ry: 6deg;  --tz: -3px; }
+.card:nth-child(6n + 7) { --rx: 6deg;  --ry: -5deg; --tz: 0px; }
+.card:nth-child(6n + 8) { --rx: -6deg;   --ry: 2deg;  --tz: -8px; }
 
 /* deepen effect on hover but keep base “random” tilt */
 .card:hover {

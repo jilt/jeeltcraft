@@ -28,6 +28,45 @@
 
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref, nextTick } from 'vue'
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'jeeltcraft | Web3 & AI Builder',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Creative developer crafting interactive AI tools, Web3 GameFi dApps, DeFi dashboards and NFT interfaces with strong focus on UX and visuals.'
+    },
+    {
+      name: 'keywords',
+      content:
+        'creative developer, web3 developer, gamefi, defi, nft dapps, ai tools, comfyui, data visualization'
+    }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      textContent: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        '@id': 'https://jeeltcraft.com/',
+        'name': 'jeeltcraft',
+        url: 'https://jeeltcraft.com/',
+        'logo': 'https://jeeltcraft.com/favicon.svg',
+        "description": "Creative Web3 and AI DeFi development studio building GameFi dApps, NFT collections and data-driven interfaces.",
+        "sameAs": [
+          "https://github.com/jilt",
+          "https://www.linkedin.com/in/jeeltcraft",
+          "https://nestedneons.tumblr.com/",
+          "https://jilt.itch.io/",
+          "https://huggingface.co/jeeltcraft"
+        ]
+      })
+    }
+  ]
+})
+
 
 type PageKey = 'home' | 'ai' | 'web3'
 

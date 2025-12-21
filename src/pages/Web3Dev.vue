@@ -50,4 +50,55 @@
 
 <script setup lang="ts">
 import GitHubProjects from '../components/GitHubProjects.vue'
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'Web3 GameFi & DeFi Smart Contracts | jeeltcraft',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Web3 developer building GameFi dApps, DeFi smart contracts, NFT tools and blockchain UX with Solidity, Rust, NEAR, StarkNet and Cosmos.'
+    },
+    {
+      name: 'keywords',
+      content:
+        'web3 developer, gamefi developer, defi smart contracts, nft smart contracts, near rust, solidity, starknet, cosmos, web3 frontend'
+    }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      textContent: JSON.stringify({
+        '@context': 'https://schema.org',
+        "@type": "Product",
+  "@id": "https://jeeltcraft.com/#web3",
+  "name": "Web3 GameFi & AI DeFi Development",
+  "image": "https://jeelctraft.com/og-cover.jpg",
+  "description": "Custom Web3 GameFi dApps, DeFi smart contracts, NFT tools and AI-powered dashboards built with Solidity, Rust, NEAR, StarkNet and Cosmos.",
+  "brand": {
+    "@type": "Organization",
+    "@id": "https://jeeltcraft.com/"
+  },
+  "category": "Web3 development services",
+  "url": "https://your-domain.xyz/contact",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.linkedin.com/in/jeeltcraft",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "price": "5000",
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "priceCurrency": "EUR",
+      "price": "3000",
+      "unitText": "Custom quote"
+    }
+  }
+      })
+    }
+  ]
+})
+
+
 </script>

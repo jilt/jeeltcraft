@@ -55,6 +55,57 @@
 </template>
 
 <script setup lang="ts">
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'AI Workflows & ComfyUI Tools | jeeltcraft',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'AI developer building ComfyUI workflows, custom LoRA training, low-resource chatbots and data-driven visual interfaces.'
+    },
+    {
+      name: 'keywords',
+      content:
+        'ai developer, comfyui workflows, lora training, diffusion models, ai tools, generative art, ai pipelines'
+    }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      textContent: JSON.stringify({
+        '@context': 'https://schema.org',
+        "@type": "Product",
+        "@id": "https://jeeltcraft.com/#ai",
+        "name": "AI Workflow development",
+        "image": "https://jeeltcraft.com/og-cover.jpg",
+        "description": "ai developer, comfyui workflows, lora training, diffusion models, ai tools, generative art, ai pipelines",
+        "brand": {
+        "@type": "Organization",
+        "@id": "https://jeeltcraft.com/"
+        },
+        "category": "AI development services",
+        "url": "https://www.linkedin.com/in/jeeltcraft",
+        "offers": {
+        "@type": "Offer",
+        "url": "https://jeeltcraft.com/ai",
+        "priceCurrency": "EUR",
+        "availability": "https://schema.org/InStock",
+        "price": "1000",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "priceCurrency": "EUR",
+          "price": "500",
+          "unitText": "Custom quote"
+          }
+        }
+      })
+    }
+  ]
+})
+
+
 type SeaArtItem = {
   title: string
   img: string

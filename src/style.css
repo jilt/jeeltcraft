@@ -309,11 +309,6 @@ body {
   color: inherit;
   transform-style: preserve-3d;
   transform-origin: center center;
-  /* use CSS vars for random tilt */
-  --rx: 10deg;
-  --ry: -8deg;
-  --tz: 0px;
-  transform: rotateX(var(--rx)) rotateY(var(--ry)) translateZ(var(--tz));
   transition:
     transform var(--transition-med),
     box-shadow var(--transition-med),

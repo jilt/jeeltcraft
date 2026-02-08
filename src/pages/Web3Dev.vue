@@ -23,7 +23,7 @@
       <div class="profile-links">
         <a href="https://api.varda.vision/" target="_blank" rel="noreferrer">Varda NFT Gaming API (Near Protocol)</a>
         <a href="https://daoverse.netlify.app/" target="_blank" rel="noreferrer">NFTFi DAO (arbitrum sepholia)</a>
-        <a href="https://jedi-frog.vercel.app/" target="_blank" rel="noreferrer">JediFrog RAG Coach (Linea)</a>
+        <a href="https://mezo-redemption-tool.vercel.app/" target="_blank" rel="noreferrer">Bitcoin EVM arbitrage and liquidation tool</a>
         <a href="https://vault.varda.vision" target="_blank" rel="noreferrer">Varda DeFi tools (Cosmos)</a>
       </div>
       <div class="divider"></div>

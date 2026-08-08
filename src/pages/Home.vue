@@ -68,7 +68,7 @@ useHead({
 })
 
 
-type PageKey = 'home' | 'ai' | 'web3'
+type PageKey = 'home' | 'ai' | 'web3' | 'lesson'
 
 type Particle = {
   x: number

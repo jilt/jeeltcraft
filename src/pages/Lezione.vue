@@ -163,7 +163,7 @@
           <div class="card-body">
             <h3>Zero-shot</h3>
             <p>Il modello riceve il compito senza esempi.</p>
-            <pre><code>Agisci come un web designer tecnico. Progetta l'outline di una pagina HTML in italiano dedicata a Hermes Agent. Includi hero, tre sezioni, una tabella e una call to action. Non inventare funzionalità non verificate.</code></pre>
+            <pre><code>Agisci come un web designer tecnico. Progetta l'outline di una pagina HTML in italiano dedicata a Hermes Agent. <br />Includi hero, tre sezioni, una tabella e una call to action. Non inventare funzionalità non verificate.</code></pre>
           </div>
         </article>
         <article class="card prompt-card">
@@ -484,26 +484,6 @@ Non inviare messaggi esterni senza approvazione umana.</code></pre>
 
       <div class="divider"></div>
       <section class="section" id="playground"><h2>Testa il modello con OpenRouter</h2><p>Questa demo invia il prompt direttamente a OpenRouter. Inserisci la tua chiave solo in locale, non inserirla nel codice e non usare il playground per dati sensibili o credenziali.</p><div class="playground-form"><div class="form-group"><label for="api-key-input">Chiave API OpenRouter:</label><p style="font-size:.8rem;color:var(--ink-muted)">Puoi ottenere una chiave da <a href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer">OpenRouter Keys</a>.</p><input type="password" id="api-key-input" placeholder="sk-or-v1..."></div><div class="form-group"><label for="prompt-input">Prompt:</label><textarea id="prompt-input" rows="5" placeholder="Scrivi qui..."></textarea></div><button id="send-prompt-btn" class="nav-button" type="button">Invia</button><div class="form-group"><label>Risposta:</label><pre id="api-response" class="code-block"><code>In attesa di un prompt...</code></pre></div></div></section>
-      <section class="section" id="playground">
-        <h2>Testa il modello con OpenRouter</h2>
-        <p>Questa demo invia il prompt direttamente a OpenRouter. Inserisci la tua chiave solo in locale, non inserirla nel codice e non usare il playground per dati sensibili o credenziali.</p>
-        <div class="playground-form">
-          <div class="form-group">
-            <label for="api-key-input">Chiave API OpenRouter:</label>
-            <p style="font-size:.8rem;color:var(--ink-muted)">Puoi ottenere una chiave da <a href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer">OpenRouter Keys</a>.</p>
-            <input id="api-key-input" type="password" v-model="apiKey" placeholder="sk-or-v1..." />
-          </div>
-          <div class="form-group">
-            <label for="prompt-input">Prompt:</label>
-            <textarea id="prompt-input" rows="5" v-model="prompt" placeholder="Scrivi qui..."></textarea>
-          </div>
-          <button type="button" class="nav-button" @click="sendPrompt">Invia</button>
-          <div class="form-group">
-            <label>Risposta:</label>
-            <pre class="code-block"><code>{{ responseText }}</code></pre>
-          </div>
-        </div>
-      </section>
     </main>
 </template>
 

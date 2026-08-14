@@ -176,7 +176,7 @@
           <div class="card-body">
             <h3>Zero-shot</h3>
             <p>The model receives the task without examples.</p>
-            <pre><code>Act as a technical web designer. Design the outline of an HTML page in English about Hermes Agent. Include a hero, three sections, a table and a call to action. Do not invent unverified features.</code></pre>
+            <pre><code>Act as a technical web designer. Design the outline of an HTML page in English about Hermes Agent. <br />Include a hero, three sections, a table and a call to action. Do not invent unverified features.</code></pre>
           </div>
         </article>
         <article class="card prompt-card">
@@ -569,6 +569,9 @@ Do not send external messages without human approval.</code></pre>
           </div>
         </div>
         <div class="card">
+        <div class="card-image-wrap">
+        <img src="/arch/asteroide-CAD-small.png" alt="Sezione CAD del progetto Asteroid">
+        </div>
           <div class="card-body">
             <h3>Collision and resistance</h3>
             <ul class="cert-list">

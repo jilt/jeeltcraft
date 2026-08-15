@@ -14,10 +14,7 @@
       </div>
       <div style="margin-top: 12px;">
         <button
-          type="button"
-          style="border: 2px solid var(--border); padding: 8px 12px; background: transparent; color: var(--ink); font-family: var(--font-mono); text-transform: uppercase; cursor: pointer;"
-          @click="navigateEnglish"
-        >
+          type="button" class="btn" @click="navigateEnglish">
           English version
         </button>
       </div>
@@ -163,7 +160,7 @@
           <div class="card-body">
             <h3>Zero-shot</h3>
             <p>Il modello riceve il compito senza esempi.</p>
-            <pre><code>Agisci come un web designer tecnico. Progetta l'outline di una pagina HTML in italiano dedicata a Hermes Agent. <br />Includi hero, tre sezioni, una tabella e una call to action. Non inventare funzionalità non verificate.</code></pre>
+            <pre><code>Agisci come un web designer tecnico. Progetta l'outline di una pagina HTML in italiano dedicata a Hermes Agent. Includi hero, tre sezioni, una tabella e una call to action. Non inventare funzionalità non verificate.</code></pre>
           </div>
         </article>
         <article class="card prompt-card">
@@ -309,7 +306,7 @@ stop when: credentials or external side effects are required</code></pre>
           </div>
           <div class="card-body"> 
       <section class="section">
-        <h2>Contesto: memoria, CLI e MCP</h2>
+        <h3>Contesto: memoria, CLI e MCP</h3>
         <p>Il contesto non è solo il prompt: è anche lo stato della sessione, la memoria, i file caricati, gli strumenti attivi e gli output precedenti.</p>
         <ul class="cert-list"><li><code>/clear</code> — svuota il contesto conversazionale corrente.</li><li><code>/reset</code> — riporta sessione o configurazione a uno stato iniziale, secondo il tool.</li><li><code>/compact</code> — comprime la cronologia mantenendo il contesto più rilevante.</li><li><code>/doctor</code> — esegue controlli diagnostici.</li><li><code>/mcp</code> — mostra o gestisce server MCP e strumenti disponibili.</li><li><code>/memory</code> — consulta o aggiorna la memoria persistente.</li><li><code>/rewind</code> — torna a uno stato precedente della sessione o del lavoro.</li></ul>
         <p class="note">Questi nomi non sono uno standard universale: Claude, OpenCode, Hermes e altri CLI possono implementare comandi diversi. Verifica sempre la documentazione del tool concreto prima di presentarli come funzionalità disponibili.</p>
@@ -483,7 +480,17 @@ Non inviare messaggi esterni senza approvazione umana.</code></pre>
       </section>
 
       <div class="divider"></div>
-      <section class="section" id="playground"><h2>Testa il modello con OpenRouter</h2><p>Questa demo invia il prompt direttamente a OpenRouter. Inserisci la tua chiave solo in locale, non inserirla nel codice e non usare il playground per dati sensibili o credenziali.</p><div class="playground-form"><div class="form-group"><label for="api-key-input">Chiave API OpenRouter:</label><p style="font-size:.8rem;color:var(--ink-muted)">Puoi ottenere una chiave da <a href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer">OpenRouter Keys</a>.</p><input type="password" id="api-key-input" placeholder="sk-or-v1..."></div><div class="form-group"><label for="prompt-input">Prompt:</label><textarea id="prompt-input" rows="5" placeholder="Scrivi qui..."></textarea></div><button id="send-prompt-btn" class="nav-button" type="button">Invia</button><div class="form-group"><label>Risposta:</label><pre id="api-response" class="code-block"><code>In attesa di un prompt...</code></pre></div></div></section>
+      <section class="section" id="playground">
+        <h2>Testa il modello con OpenRouter</h2>
+        <p>Questa demo invia il prompt direttamente a OpenRouter. Inserisci la tua chiave solo in locale, non inserirla nel codice e non usare il playground per dati sensibili o credenziali.</p>
+        <div class="playground-form">
+          <div class="form-group">
+            <label for="api-key-input">Chiave API OpenRouter:</label>
+            <p style="font-size:.8rem;color:var(--ink-muted)">Puoi ottenere una chiave da <a href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer">OpenRouter Keys</a>.</p>
+            <input type="password" id="api-key-input" placeholder="sk-or-v1..."></div>
+            <div class="form-group"><label for="prompt-input">Prompt:</label><textarea id="prompt-input" rows="5" placeholder="Scrivi qui..."></textarea></div>
+            <button id="send-prompt-btn" class="nav-button" @click="sendPrompt" type="button">Invia</button><div class="form-group">
+              <label>Risposta:</label><pre id="api-response" class="code-block"><code>In attesa di un prompt...</code></pre></div></div></section>
     </main>
 </template>
 

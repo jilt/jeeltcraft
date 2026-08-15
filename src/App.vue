@@ -66,3 +66,15 @@ onUnmounted(() => {
   window.removeEventListener('hashchange', handleHashChange)
 })
 </script>
+
+<style>
+.btn {
+  border: 2px solid var(--border);
+  padding: 8px 12px;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+</style>

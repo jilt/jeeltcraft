@@ -1,13 +1,13 @@
 <template>
   <div class="app-root">
     <header class="site-header">
-      <div class="logo" @click="page = 'home'">
+        <div class="logo" @click="navigateTo('home')">
         <img src="/favicon.svg" alt="jeeltcraft logo" class="logo-image" @click="navigateTo('home')" />
       </div>
       <nav class="nav">
-        <button @click="page = 'ai'">AI</button>
-        <button @click="page = 'web3'">Web3</button>
-        <button @click="page = 'lesson'">Agents</button>
+         <button @click="navigateTo('ai')">AI</button>
+         <button @click="navigateTo('web3')">Web3</button>
+         <button @click="navigateTo('lesson')">Agents</button>
         <a
           href="https://www.linkedin.com/in/jeeltcraft"
           target="_blank"
@@ -18,11 +18,11 @@
       </nav>
     </header>
 
-    <Home v-if="page === 'home'" @navigate="page = $event" />
-    <AIDev v-else-if="page === 'ai'" />
-    <Web3Dev v-else-if="page === 'web3'" />
-    <Lesson v-else-if="page === 'lesson'" @navigate="page = $event" />
-    <Lezione v-else-if="page === 'lezione'" />
+     <Home v-if="page === 'home'" :key="'home'" @navigate="navigateTo($event)" />
+     <AIDev v-else-if="page === 'ai'" :key="'ai'" />
+     <Web3Dev v-else-if="page === 'web3'" :key="'web3'" />
+     <Lesson v-else-if="page === 'lesson'" :key="'lesson'" @navigate="navigateTo($event)" />
+     <Lezione v-else-if="page === 'lezione'" :key="'lezione'" />
 
     <CreatorLinks />
   </div>

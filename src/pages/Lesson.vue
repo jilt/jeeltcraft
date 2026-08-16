@@ -171,7 +171,7 @@
       <div class="prompt-grid">     
         <article class="card prompt-card">
           <div class="card-body">        
-        <pre><code>Act as a technical web designer. Design the outline of an HTML page in English about Hermes Agent. Include a hero, three sections, a table and a call to action. Act as a technical web designer. Design the outline of an HTML page in English about Hermes Agent. Include a hero, three sections, a table and a call to action. Do not invent unverified features.</code></pre>
+        <pre><code>Act as a technical web designer. Design the outline of an HTML page in English about Hermes Agent. Include a hero, three sections, a table and a call to action.</code></pre>
           </div>
         </article>
         <article class="card prompt-card">
@@ -217,7 +217,7 @@ Add role, objective, context, scope, constraints, format, verification and stop 
           <div class="card-body">
             <h3>Tree of thoughts / exploring possibilities</h3>
             <p>Planning questions become design branches to compare.</p>
-            <pre><code>Explore three architectures for a Hermes page:
+            <pre><code>Explore three architectures for app's page:
 A) linear educational page;
 B) workflow-centered page;
 C) multi-agent orchestration page.
@@ -248,7 +248,7 @@ Prompt 5: fix only detected errors and return the diff.</code></pre>
       <h2>03 · Dump Vestige: the /goal loop</h2>
       <p>
         In Dump Vestige, form emerges progressively. This becomes a metaphor for
-        Hermes’ persistent workflow: a goal produces an artefact, a judge evaluates
+        the /goal command: a goal produces an artefact, a judge evaluates
         it and the system decides whether to continue, correct, wait or stop.
       </p>
       <div class="grid">
@@ -286,6 +286,9 @@ stop when: credentials or external side effects are required</code></pre>
             <p>
               Repeated operations can then become skills: the system moves from “perform
               this operation” to “recognize and reuse this procedure”.
+            </p>
+            <p>
+              the /goal command is now available and can be used in most common harnesses, with many users employing it to log errors and develop custom skills.
             </p>
             <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/goals" target="_blank" rel="noreferrer">Hermes /goal documentation</a>
           </div>
@@ -469,9 +472,6 @@ Return findings grouped by severity and a verification checklist.</code></pre>
   "requires_human_approval": true,
   "verification": ["tests_pass", "no_high_severity_findings", "simulation_completed"]
 }</code></pre>
-      <p class="note">
-        The previous schema is an educational example of a <code>skill_router.json</code>, not Theo’s official file. The real workflow should be linked only after its repository or source file has been verified.
-      </p>
     </section>
 
     <section class="section">
@@ -506,30 +506,29 @@ Google Calendar webhook
 
 <h3>Files</h3>
 <pre class="workflow-code"><code>
-- `calendar-telegram-subagents/.env.example`
-- `calendar-telegram-subagents/WORKFLOW.md`
-- `calendar-telegram-subagents/README.md`
-- `calendar-telegram-subagents/app/README.md`
-- `calendar-telegram-subagents/policies/notification-policy.yaml`
-- `calendar-telegram-subagents/.claude/agents/telegram-publisher.md`
-- `calendar-telegram-subagents/.claude/agents/event-validator.md`
-- `calendar-telegram-subagents/.claude/agents/event-enricher.md`
-- `calendar-telegram-subagents/.claude/agents/event-fetcher.md`
-- `calendar-telegram-subagents/.claude/agents/calendar-orchestrator.md`
-- `calendar-telegram-subagents/.claude/skills/telegram-delivery/SKILL.md`
-- `calendar-telegram-subagents/.claude/skills/event-message-formatting/SKILL.md`
-- `calendar-telegram-subagents/.claude/skills/calendar-event-intake/SKILL.md`
+ calendar-telegram-subagents/.env.example
+ calendar-telegram-subagents/WORKFLOW.md
+ calendar-telegram-subagents/README.md
+ calendar-telegram-subagents/app/README.md
+ calendar-telegram-subagents/policies/notification-policy.yaml
+ calendar-telegram-subagents/.claude/agents/telegram-publisher.md
+ calendar-telegram-subagents/.claude/agents/event-validator.md
+ calendar-telegram-subagents/.claude/agents/event-enricher.md
+ calendar-telegram-subagents/.claude/agents/event-fetcher.md
+ calendar-telegram-subagents/.claude/agents/calendar-orchestrator.md
+ calendar-telegram-subagents/.claude/skills/telegram-delivery/SKILL.md
+ calendar-telegram-subagents/.claude/skills/event-message-formatting/SKILL.md
+ calendar-telegram-subagents/.claude/skills/calendar-event-intake/SKILL.md
 
---- 
 </code></pre>
 <h3>Agent Roles</h3>
       <pre class="workflow-code"><code>orchestrator: asks each worker to do its part
         ↓
 fetcher: reads calendar events
         ↓
-enricher: collects authorized context
-        ↓
 validator : checks shareability on timing
+        ↓
+enricher: collects authorized context
         ↓
 publisher: Summary posted to the group
 </code></pre>
@@ -610,28 +609,25 @@ credential     no secrets
           fixed Telegram group
       </code></pre>
       <h3>How to Read it</h3>
-      <pre><code>
-        How to read it
-
-- IronClaw is the **security boundary** around the workflow.
-- `calendar-read` is allowed to talk only to Google.
-- `event-format` is a local transformation and needs no credential or Internet access.
-- `delivery-ledger` remembers whether a message was already delivered.
-- `telegram-send` is allowed to talk only to Telegram and to one configured group.
-      </code></pre>
+      <ul>
+        <li>IronClaw is the <strong>security boundary</strong> around the workflow.</li>
+        <li><code>calendar-read</code> is allowed to talk only to Google.</li>
+        <li><code>event-format</code> is a local transformation and needs no credential or Internet access.</li>
+        <li><code>delivery-ledger</code> remembers whether a message was already delivered.</li>
+        <li><code>telegram-send</code> is allowed to talk only to Telegram and to one configured group.</li>
+      </ul>
       <h3>Files</h3>
       <pre class="workflow-code"><code>
 
-- `calendar-telegram-ironclaw/README-differences.md`
-- `calendar-telegram-ironclaw/.env.example`
-- `calendar-telegram-ironclaw/IRONCLAW_WORKFLOW.md`
-- `calendar-telegram-ironclaw/README.md`
-- `calendar-telegram-ironclaw/docs/DEPLOYMENT.md`
-- `calendar-telegram-ironclaw/policies/notification-policy.yaml`
-- `calendar-telegram-ironclaw/tools/README.md`
-- `calendar-telegram-ironclaw/skills/calendar-telegram-orchestrator.md`
+ calendar-telegram-ironclaw/README-differences.md
+ calendar-telegram-ironclaw/.env.example
+ calendar-telegram-ironclaw/IRONCLAW_WORKFLOW.md
+ calendar-telegram-ironclaw/README.md
+ calendar-telegram-ironclaw/docs/DEPLOYMENT.md
+ calendar-telegram-ironclaw/policies/notification-policy.yaml
+ calendar-telegram-ironclaw/tools/README.md
+ calendar-telegram-ironclaw/skills/calendar-telegram-orchestrator.md
 
----
 </code></pre>
 <br />
 <a href="/arch/calendar-telegram-ironclaw.zip" class="btn" download>Ironclaw workflow</a>&nbsp;
@@ -669,11 +665,6 @@ credential     no secrets
       `data/calendar_telegram_state.json`
       </code></pre>
       <h3>How to Read it</h3>
-      - On the **first run**, it observes Calendar events and stores Google’s sync token; it sends nothing.
-      - On future runs, it requests only changes since that token.
-      - An event needs the opt-in property `telegram_notify=true` before it may be posted.
-      - The JSON state file prevents a restart or repeated poll from sending the same event version twice.
-      - `DRY_RUN` formats and records test delivery results; `SEND` enables Telegram delivery.
       <ul>
         <li>On the <strong>first run</strong>, it observes Calendar events and stores Google’s sync token; it sends nothing.</li>
         <li>On future runs, it requests only changes since that token.</li>
@@ -682,19 +673,18 @@ credential     no secrets
         <li><code>DRY_RUN</code> formats and records test delivery results; <code>SEND</code> enables Telegram delivery.</li>
       </ul>
       <h3>Files</h3>
-      <pre class="workflow-code"><code>
-        - `final/requirements.txt`
-- `final/.env.example`
-- `final/README.md`
-- `final/scripts/run.sh`
-- `final/ironclaw/TOOL-CONTRACT.md`
-- `final/policies/notification-policy.json`
-- `final/data/calendar_telegram_state.json`
-- `final/app/main.py`
-- `final/app/telegram_client.py`
-- `final/app/calendar_client.py`
-- `final/app/state.py`
-- `final/app/__init__.py`
+      <pre class="workflow-code"><code> final/requirements.txt
+ final/.env.example
+ final/README.md
+ final/scripts/run.sh
+ final/ironclaw/TOOL-CONTRACT.md
+ final/policies/notification-policy.json
+ final/data/calendar_telegram_state.json
+ final/app/main.py
+ final/app/telegram_client.py
+ final/app/calendar_client.py
+ final/app/state.py
+ final/app/__init__.py
 </code></pre>
 <br />
       <a href="/arch/final.zip" class="btn" download>Production Ready Ironclaw</a>
@@ -816,6 +806,7 @@ credential     no secrets
           <textarea id="prompt-input" rows="5" v-model="prompt" placeholder="Write here..."></textarea>
         </div>
         <button type="button" class="nav-button" @click="sendPrompt">Send</button>
+        <div class="divider-blind"></div>
         <div class="form-group">
           <label>Response:</label>
           <pre class="code-block"><code>{{ responseText }}</code></pre>

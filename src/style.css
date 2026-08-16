@@ -120,6 +120,11 @@ body {
   border-top: 2px solid var(--border);
 }
 
+.divider-blind {
+  padding-top: 1em;
+  border: none;
+}
+
 /* home */
 
 .home {

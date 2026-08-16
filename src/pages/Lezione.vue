@@ -23,8 +23,8 @@
     <section class="section">
       <h2>Concetti chiave e nuova mappa</h2>
       <p>
-        La lezione collega Generative AI, Machine Learning, LLM e prompting alle architetture di
-        <em>Progettazione per la AI</em>. Il percorso ora prosegue dai prompt ai workflow: prima si disegna l'istruzione,
+        La lezione collega Generative AI, Machine Learning, LLM e prompting ad architetture concettuali di
+        <em>Progettazione per la AI</em>. Partiamo dai prompt verso i workflow: prima si disegna l'istruzione,
         poi si osserva l'output, lo si valuta, lo si trasforma in skill e infine lo si colloca dentro un ambiente agentico
         con strumenti, ruoli e limiti.
       </p>
@@ -42,7 +42,7 @@
           <div class="card-body">
             <h3>Post-singolarità / Dump Vestige</h3>
             <p>
-              La forma emerge da materia instabile → Hermes <code>/goal</code> come ciclo Prompt → Output → Evaluation → Continuation.
+              La forma emerge da materia instabile <code>/goal</code> come ciclo Prompt → Output → Evaluation → Continuation.
             </p>
           </div>
         </div>
@@ -66,7 +66,7 @@
           <div class="card-body">
             <h3>Panopticon / Ornamento come Crimine</h3>
             <p>
-              Infrastruttura etica e reputazionale → reviews, provenance, governance, accountability, contesto urbano e human-in-the-loop.
+              Infrastruttura etica e reputazionale → reviews, provenance, governance, accountability e human-in-the-loop.
             </p>
           </div>
         </div>
@@ -98,7 +98,7 @@
             <h3>Dal progetto al concetto</h3>
             <p>
               In Skizoid la forma è conseguenza di parametri e vincoli. Analogamente,
-              un modello ML apprende pattern dai dati e produce output che dipendono dal contesto e dalla funzione obiettivo.
+              un modello ML apprende pattern dai dati e produce output che dipendono dal contesto e dall'obiettivo.
             </p>
           </div>
         </div>
@@ -160,7 +160,7 @@
           <div class="card-body">
             <h3>Zero-shot</h3>
             <p>Il modello riceve il compito senza esempi.</p>
-            <pre><code>Agisci come un web designer tecnico. Progetta l'outline di una pagina HTML in italiano dedicata a Hermes Agent. Includi hero, tre sezioni, una tabella e una call to action. Non inventare funzionalità non verificate.</code></pre>
+            <pre><code>Agisci come un web designer tecnico. Progetta l'outline di una pagina HTML in italiano dedicata alla mia app. Includi hero, tre sezioni, una tabella e una call to action. Non inventare funzionalità non verificate.</code></pre>
           </div>
         </article>
         <article class="card prompt-card">
@@ -175,14 +175,14 @@ ESEMPIO 2:
 Struttura: hero, tabella comparativa, sezione workflow.
 Tono: editoriale, chiaro, visuale.
 
-Ora crea una pagina su Hermes Agent mantenendo la struttura degli esempi. Restituisci outline, HTML e assunzioni.</code></pre>
+Ora crea una pagina sulla mia app mantenendo la struttura degli esempi. Restituisci outline, HTML e assunzioni.</code></pre>
           </div>
         </article>
         <article class="card prompt-card">
           <div class="card-body">
             <h3>Chain of thought / pianificazione strutturata</h3>
             <p>Chiediamo un piano verificabile, non necessariamente l'esposizione del ragionamento privato.</p>
-            <pre><code>Pianifica la creazione di una pagina web su Hermes in fasi verificabili:
+            <pre><code>Pianifica la creazione di una pagina web sulla mia app in fasi verificabili:
 1. contenuti necessari;
 2. struttura HTML;
 3. link e fonti;
@@ -197,7 +197,7 @@ Per ogni fase indica input, output e criterio di completamento. Non scrivere anc
             <p>Il modello migliora il prompt prima di eseguire il lavoro.</p>
             <pre><code>Sei un esperto di prompt design. Trasforma la richiesta seguente in un prompt robusto per un agente di coding.
 
-Richiesta: "Crea una pagina web su Hermes Agent".
+Richiesta: "Crea una pagina web sulla mia app.
 
 Aggiungi ruolo, obiettivo, contesto, scope, vincoli, formato, verifiche e stop condition. Restituisci prima il prompt migliorato, poi spiega quali ambiguità hai rimosso.</code></pre>
           </div>
@@ -206,7 +206,7 @@ Aggiungi ruolo, obiettivo, contesto, scope, vincoli, formato, verifiche e stop c
           <div class="card-body">
             <h3>Tree of thoughts / esplorare possibilità</h3>
             <p>Le domande della pianificazione diventano rami progettuali da confrontare.</p>
-            <pre><code>Esplora tre architetture per una pagina su Hermes:
+            <pre><code>Esplora tre architetture per una pagina sulla mia app:
 A) pagina didattica lineare;
 B) pagina centrata su workflow;
 C) pagina centrata su multi-agent orchestration.
@@ -233,8 +233,8 @@ Prompt 5: correggi solo gli errori rilevati e restituisci il diff.</code></pre>
     <section class="section">
       <h2>03 · Dump Vestige: il ciclo /goal</h2>
       <p>
-        In Dump Vestige la forma emerge progressivamente. Questa è la metafora per il workflow persistente di Hermes:
-        un obiettivo produce un artefatto, un judge lo valuta e il sistema decide se continuare, correggere, aspettare o fermarsi.
+        In Dump Vestige la forma emerge progressivamente. Per questo esistono i loop come /goal:
+        un obiettivo produce un artefatto, un giudice lo valuta e il sistema decide se continuare, correggere, aspettare o fermarsi.
       </p>
       <div class="grid">
         <div class="card">
@@ -268,6 +268,9 @@ stop when: credentials or external side effects are required</code></pre>
             </p>
             <p>
               Le operazioni ricorrenti possono poi diventare skills: il sistema passa da “esegui questa operazione” a “riconosci e riusa questa procedura”.
+            </p>
+            <p>
+              Il comando /goal adesso si trova ed è utilizzabile in quasi tutte le harness di uso comune, molti lo usano per loggare gli errori ed elaborare custom skills.
             </p>
             <a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/goals" target="_blank" rel="noreferrer">Documentazione Hermes /goal</a>
           </div>
@@ -309,8 +312,8 @@ stop when: credentials or external side effects are required</code></pre>
         <h3>Contesto: memoria, CLI e MCP</h3>
         <p>Il contesto non è solo il prompt: è anche lo stato della sessione, la memoria, i file caricati, gli strumenti attivi e gli output precedenti.</p>
         <ul class="cert-list"><li><code>/clear</code> — svuota il contesto conversazionale corrente.</li><li><code>/reset</code> — riporta sessione o configurazione a uno stato iniziale, secondo il tool.</li><li><code>/compact</code> — comprime la cronologia mantenendo il contesto più rilevante.</li><li><code>/doctor</code> — esegue controlli diagnostici.</li><li><code>/mcp</code> — mostra o gestisce server MCP e strumenti disponibili.</li><li><code>/memory</code> — consulta o aggiorna la memoria persistente.</li><li><code>/rewind</code> — torna a uno stato precedente della sessione o del lavoro.</li></ul>
-        <p class="note">Questi nomi non sono uno standard universale: Claude, OpenCode, Hermes e altri CLI possono implementare comandi diversi. Verifica sempre la documentazione del tool concreto prima di presentarli come funzionalità disponibili.</p>
-        <table class="comparison"><thead><tr><th>CLI</th><th>MCP</th></tr></thead><tbody><tr><td>L'agente esegue comandi locali o remoti come <code>pytest</code>, <code>cargo test</code>, <code>git</code> o <code>solana</code>.</td><td>L'agente usa server che espongono strumenti e risorse con un'interfaccia standardizzata.</td></tr><tr><td>Ottimo per script, build, test e pipeline.</td><td>Ottimo per collegare database, browser, filesystem e servizi a più client.</td></tr><tr><td>Dipende da ambiente, permessi e output testuale.</td><td>Espone capability e schemi più strutturati.</td></tr></tbody></table>
+        <p class="note">Questi nomi non sono uno standard universale: Claude, OpenCode, Hermes e altri CLI possono implementare comandi diversi.</p>
+        <table class="comparison"><thead><tr><th>CLI</th><th>MCP</th></tr></thead><tbody><tr><td>L'agente esegue comandi locali o remoti come <code>pytest</code>, <code>cargo test</code> o <code>git</code>.</td><td>L'agente usa server che espongono strumenti e risorse con un'interfaccia standardizzata.</td></tr><tr><td>Ottimo per script, build, test e pipeline.</td><td>Ottimo per collegare database, browser, filesystem e servizi a più client.</td></tr><tr><td>Dipende da ambiente, permessi e output testuale.</td><td>Espone capability e schemi più strutturati.</td></tr></tbody></table>
       </section>
           </div>
         </div>
@@ -339,7 +342,7 @@ stop when: credentials or external side effects are required</code></pre>
           </div>
           <div class="card-body">
             <h3>Curatela · identità e regole</h3>
-            <p><code>SOUL.md</code> definisce identità, tono e stile generale. <code>AGENTS.md</code> contiene istruzioni specifiche del progetto: convenzioni, percorsi, comandi, test e limiti.</p>
+            <p><code>SOUL.md</code> definisce identità, tono e stile generale. <code>AGENTS.md</code> contiene anche istruzioni specifiche del progetto: convenzioni, percorsi, comandi, test e limiti.</p>
             <a href="https://hermes-agent.nousresearch.com/docs/guides/use-soul-with-hermes" target="_blank" rel="noreferrer">Hermes: SOUL.md</a>
           </div>
         </div>
@@ -425,40 +428,221 @@ Return findings grouped by severity and a verification checklist.</code></pre>
       </section>
 
       <section class="section">
-        <h2>06.2 · Workflow: preparare una riunione su Telegram</h2>
-        <p>Un esempio semplice collega un gruppo Telegram a una catena di agenti: intake, ricerca, agenda, review e sintesi. Il messaggio viene trasformato in un oggetto di lavoro, attraversa più ruoli e torna nel gruppo solo dopo una verifica.</p>
-        <pre class="workflow-code"><code>Telegram group message
+        <h2>06.2 · Workflow multi-agente: preparare una riunione su Telegram</h2>
+        <p>Questa versione del workflow divide un'automazione in piccoli ruoli, i subagenti. Ogni ruolo ha un compito, rendendo più semplice ragionare su ciò che è autorizzato a fare.</p>
+        <h3>Diagramma di flusso</h3>
+        <pre class="workflow-code"><code>
+Webhook Google Calendar
+                |
+                v
+      calendar-orchestrator
+                |
+    +-----------+-----------+
+    |                       |
+    v                       v
+  event-fetcher         event-enricher
+  Google read only       no secrets/network
+    |                       |
+    +-----------+-----------+
+                |
+                v
+           event-validator
+       policy + controllo duplicati
+                |
+                v
+       telegram-publisher
+       Telegram send only
+                |
+                v
+          delivery record
+</code></pre>
+
+<h3>File</h3>
+<pre class="workflow-code"><code>
+ calendar-telegram-subagents/.env.example
+ calendar-telegram-subagents/WORKFLOW.md
+ calendar-telegram-subagents/README.md
+ calendar-telegram-subagents/app/README.md
+ calendar-telegram-subagents/policies/notification-policy.yaml
+ calendar-telegram-subagents/.claude/agents/telegram-publisher.md
+ calendar-telegram-subagents/.claude/agents/event-validator.md
+ calendar-telegram-subagents/.claude/agents/event-enricher.md
+ calendar-telegram-subagents/.claude/agents/event-fetcher.md
+ calendar-telegram-subagents/.claude/agents/calendar-orchestrator.md
+ calendar-telegram-subagents/.claude/skills/telegram-delivery/SKILL.md
+ calendar-telegram-subagents/.claude/skills/event-message-formatting/SKILL.md
+ calendar-telegram-subagents/.claude/skills/calendar-event-intake/SKILL.md
+
+</code></pre>
+<h3>Ruoli degli agenti</h3>
+      <pre class="workflow-code"><code>orchestratore: chiede a ogni operatore di svolgere la sua parte
         ↓
-Intake agent: estrae data, partecipanti e obiettivo
+fetcher: legge gli eventi del calendario
         ↓
-Research agent: raccoglie il contesto autorizzato
+validator : controlla la condivisibilità in base alla tempistica
         ↓
-Agenda agent: crea domande, decisioni e tempi
+enricher: raccoglie il contesto autorizzato
         ↓
-Review agent: controlla fonti, privacy e informazioni mancanti
-        ↓
-Human approval
-        ↓
-Sintesi pubblicata nel gruppo</code></pre>
-        <pre class="workflow-code"><code>Prepara il meeting di domani.
+publisher: riepilogo pubblicato nel gruppo
+</code></pre>
+  <h3>Prompt</h3>
+      <pre class="workflow-code"><code v-pre>Prepara la riunione.
 
 Contesto:
-- partecipanti: team protocol engineering
-- tema: audit del nuovo arbitrage router
-- durata: 45 minuti
+- Partecipanti: team ingegneria protocolli
+- Tema: audit del nuovo arbitrage router
+- Durata: 45 minuti
 
-Produci:
-1. obiettivo;
-2. decisioni da prendere;
-3. domande tecniche;
-4. rischi da chiarire;
-5. agenda temporizzata;
-6. informazioni mancanti.
+## JSON restituito con mappatura variabili (Google Calendar API):
 
-Non inventare dati. Segnala l'incertezza.
-Non inviare messaggi esterni senza approvazione umana.</code></pre>
+{
+  "event_id": "google_event_id",
+  "calendar_id": "google_calendar_id",
+  "summary": "event.summary",
+  "participants": [
+    "event.attendees[].displayName"
+  ],
+  "start": "event.start.dateTime",
+  "end": "event.end.dateTime",
+  "timezone": "event.start.timeZone",
+  "location": "event.location",
+  "meeting_link": "approved_meeting_link",
+  "updated": "event.updated"
+}
+
+Usa lo strumento Google Calendar configurato in sola lettura per trovare l'evento corrispondente. Usa solo dati Calendar verificati e il contesto sopra fornito. Non modificare l'evento. Non inventare partecipanti, dettagli architetturali, rischi, decisioni, scadenze o componenti tecnici. Segna le informazioni non disponibili come `UNKNOWN` o `DA CONFERMARE`.
+
+Usa il fuso orario Europe/Rome. Se più eventi corrispondono, elenca i candidati e chiedi chiarimenti. Se nessuno corrisponde, dichiaralo e prosegui usando solo il contesto fornito.
+
+Produce:
+
+1. Obiettivo.
+2. Decisioni da prendere, segnando chiaramente gli elementi che richiedono conferma.
+3. Domande tecniche su routing, pricing, slippage, fees, freschezza dati, ordinamento delle transazioni, fallimenti, permessi, protezione da replay, insediamento cross-chain e monitoraggio. Presentale come domande, non come assunzioni.
+4. Possibili rischi da chiarire, inclusi prezzi obsoleti, MEV, esecuzione parziale, fallimento di bridge o solver, errori su decimali, reorgs, problemi di access-control, problemi di replay/nonce e scarsa osservabilità. Non descriverli come vulnerabilità confermate.
+5. Un'agenda temporizzata per un totale esatto di 45 minuti.
+6. Informazioni mancanti, come versione/commit del router, catene e venue supportate, diagrammi, scope dell'audit, threat model, test, issue aperte, permessi degli signer, fonti di prezzo e proprietari delle decisioni.
+7. Una sezione per messaggi esterni completata usando il bozze fornita e i dettagli verificati dell'incontro.
+
+Non inviare, modificare o pubblicare alcun messaggio esterno. Preserva il significato della bozza. Segna eventuali aggiunte o dettagli incerti.
+
+- Messaggio esterno preparato: NO
+- Approvazione umana richiesta: SÌ</code></pre>
+<br />
+<a href="/arch/calendar-telegram-subagents.zip" class="btn" download>Workflow Multi-Agente</a>
       </section>
+      <section class="section">
+      <h2>06.3 · Workflow Ironclaw: preparare una riunione su Telegram</h2>
+      <p class="note">
+        Lo stesso workflow può essere implementato in IronClaw, un ambiente locale che
+        fornisce privacy, controllo e un ambiente operativo protetto.
+      </p>
+      <p><a href="https://ironclaw.com" target="_blank">Ironclaw</a> mantiene le stesse fasi logiche, ma esprime le fasi sensibili come strumenti con capability limitate. In parole semplici: lo strumento Calendario ottiene l'accesso al Calendario, lo strumento Telegram ottiene l'accesso a Telegram e nessuno dei due dovrebbe ricevere il segreto dell'altro.</p>
+      <h3>Diagramma di flusso</h3>
+      <pre class="workflow-code"><code>
+      IronClaw scheduled job or webhook
+                 |
+                 v
+     calendar-telegram-orchestrator
+                 |
+     +-----------+------------+
+     |           |            |
+     v           v            v
+calendar-read  event-format  delivery-ledger
+Google-only    no network    database-only
+credential     no secrets
+     |                         |
+     +------------+------------+
+                  |
+                  v
+             telegram-send
+      Telegram-only credential
+                  |
+                  v
+          fixed Telegram group
+      </code></pre>
+      <h3>Come leggerlo</h3>
+      <ul>
+        <li><strong>IronClaw</strong> è il <strong>confine di sicurezza</strong> attorno al workflow.</li>
+        <li><code>calendar-read</code> è autorizzato a parlare solo con Google.</li>
+        <li><code>event-format</code> è una trasformazione locale e non necessita di credenziali o accesso a Internet.</li>
+        <li><code>delivery-ledger</code> ricorda se un messaggio è già stato consegnato.</li>
+        <li><code>telegram-send</code> è autorizzato a parlare solo con Telegram e con un gruppo configurato.</li>
+      </ul>
+      <h3>Files</h3>
+      <pre class="workflow-code"><code>
 
+ calendar-telegram-ironclaw/README-differences.md
+ calendar-telegram-ironclaw/.env.example
+ calendar-telegram-ironclaw/IRONCLAW_WORKFLOW.md
+ calendar-telegram-ironclaw/README.md
+ calendar-telegram-ironclaw/docs/DEPLOYMENT.md
+ calendar-telegram-ironclaw/policies/notification-policy.yaml
+ calendar-telegram-ironclaw/tools/README.md
+ calendar-telegram-ironclaw/skills/calendar-telegram-orchestrator.md
+---
+</code></pre> 
+<br />
+<a href="/arch/calendar-telegram-ironclaw.zip" class="btn" download>Workflow Ironclaw</a>&nbsp;
+      </section>
+      <section class="section">
+      <h2>06.4 · Workflow Ironclaw Production Ready</h2>
+      <p>Questa versione rimuove i subagenti LLM non necessari e il database. Un unico job Python deterministico esegue il polling di Google Calendar, utilizza un file JSON come memoria e invia messaggi a Telegram. È adatto per IronClaw perché può eseguirlo come un singolo strumento/job con restrizioni e iniettare i suoi segreti in modo sicuro.</p>
+      <h3>Diagramma di flusso</h3>
+      <pre class="workflow-code"><code>
+        IronClaw schedule (every 5–10 minutes)
+                 |
+                 v
+          Python `app.main`
+                 |
+                 v
+     Google Calendar incremental sync
+       read-only OAuth credential
+                 |
+                 v
+       Is event `telegram_notify=true`?
+             | yes       | no
+             v           v
+   Has this event version  skip
+   already been delivered?
+             | no
+             v
+       Format title, time, location
+             |
+             v
+       Telegram `sendMessage`
+        fixed group chat ID only
+             |
+             v
+  Atomically save sync token + delivery key
+      `data/calendar_telegram_state.json`
+      </code></pre>
+      <h3>Come leggerlo</h3>
+      <ul>
+        <li>Alla <strong>prima esecuzione</strong>, osserva gli eventi del Calendario e memorizza il token di sincronizzazione di Google; non invia nulla.</li>
+        <li>Nelle esecuzioni future, richiede solo le modifiche successive a quel token.</li>
+        <li>Un evento necessita della proprietà di opt-in <code>telegram_notify=true</code> prima di poter essere pubblicato.</li>
+        <li>Il file di stato JSON impedisce che un riavvio o un polling ripetuto inviino due volte la stessa versione dell'evento.</li>
+        <li><code>DRY_RUN</code> formatta e registra i risultati dei test di consegna; <code>SEND</code> abilita la consegna su Telegram.</li>
+      </ul>
+      <h3>Files</h3>
+      <pre class="workflow-code"><code>
+ final/requirements.txt
+ final/.env.example
+ final/README.md
+ final/scripts/run.sh
+ final/ironclaw/TOOL-CONTRACT.md
+ final/policies/notification-policy.json
+ final/data/calendar_telegram_state.json
+ final/app/main.py
+ final/app/telegram_client.py
+ final/app/calendar_client.py
+ final/app/state.py
+ final/app/__init__.py
+</code></pre>
+<br />
+      <a href="/arch/final.zip" class="btn" download>Workflow Production Ready</a>
+      </section>
       <section class="section">
         <h2>07 · Scelte etiche e governance: Panopticon</h2>
         <p>La prigione di “Ornamento come Crimine / Panopticon” diventa un'infrastruttura etica e reputazionale: osserva, interroga, classifica e adatta la risposta in relazione all'agente e al contesto urbano in cui opera.</p>
@@ -473,12 +657,6 @@ Non inviare messaggi esterni senza approvazione umana.</code></pre>
         <div class="link-row"><a href="https://www.ironclaw.com/" target="_blank" rel="noopener noreferrer">IronClaw</a><a href="https://hermes-agent.nousresearch.com/docs/" target="_blank" rel="noopener noreferrer">Hermes Agent</a><a href="https://openrouter.ai/" target="_blank" rel="noopener noreferrer">OpenRouter</a></div>
         <p class="note"><b>Separazione dei livelli:</b> OpenRouter può essere usato come access layer ai modelli; Hermes come runtime di workflow e orchestrazione; IronClaw come ambiente orientato a privacy e controllo locale. Non sono la stessa cosa e non garantiscono automaticamente lo stesso modello di sicurezza.</p>
       </section>
-
-      <section class="section">
-        <h2>09 · Sintesi operativa</h2>
-        <ol class="cert-list"><li><b>Skizoid:</b> progetta il prompt e i vincoli.</li><li><b>Dump Vestige:</b> osserva il ciclo obiettivo → output → valutazione → correzione.</li><li><b>A.R.K.:</b> trasforma contesto e procedure in skills.</li><li><b>Panopticon:</b> governa reviews, reputazione, provenance e accountability.</li><li><b>Asteroid:</b> costruisce un habitat locale dove strumenti e agenti operano con limiti espliciti.</li></ol>
-      </section>
-
       <div class="divider"></div>
       <section class="section" id="playground">
         <h2>Testa il modello con OpenRouter</h2>
@@ -489,8 +667,13 @@ Non inviare messaggi esterni senza approvazione umana.</code></pre>
             <p style="font-size:.8rem;color:var(--ink-muted)">Puoi ottenere una chiave da <a href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer">OpenRouter Keys</a>.</p>
             <input type="password" id="api-key-input" placeholder="sk-or-v1..."></div>
             <div class="form-group"><label for="prompt-input">Prompt:</label><textarea id="prompt-input" rows="5" placeholder="Scrivi qui..."></textarea></div>
-            <button id="send-prompt-btn" class="nav-button" @click="sendPrompt" type="button">Invia</button><div class="form-group">
-              <label>Risposta:</label><pre id="api-response" class="code-block"><code>In attesa di un prompt...</code></pre></div></div></section>
+            <button id="send-prompt-btn" class="nav-button" @click="sendPrompt" type="button">Invia</button>
+            <div class="divider-blind"></div>
+            <div class="form-group">
+              <label>Risposta:</label><pre id="api-response" class="code-block"><code>In attesa di un prompt...</code></pre>
+            </div>
+          </div>
+        </section>
     </main>
 </template>
 

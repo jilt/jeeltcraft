@@ -406,248 +406,557 @@ Return findings grouped by severity and a verification checklist.</code></pre>
         <p>La creazione manuale formalizza una procedura che conosci già. Nel caso di Hermes, l'uso ripetuto può invece far emergere pattern operativi che poi vengono trasformati in skills riusabili: è il passaggio da operazione occasionale a competenza dell'ambiente.</p>
       </section>
 
-      <section class="section">
-        <h2>06.1 · Workflow multi-agent</h2>
-        <p>Una skill diventa più potente quando viene assegnata a un ruolo dentro un workflow. Il repository <a href="https://github.com/msitarzewski/agency-agents" target="_blank" rel="noopener noreferrer">Agency Agents</a> è un esempio utile per mostrare personas e ruoli specializzati per diversi ambienti di coding; il workflow completo deve comunque definire orchestrazione, stato, verifiche e gate umano.</p>
-        <table class="comparison"><thead><tr><th>Ruolo</th><th>Responsabilità</th><th>Output</th></tr></thead><tbody><tr><td>Planner</td><td>Decompone il problema e definisce criteri “done”.</td><td>Piano, scope, dipendenze.</td></tr><tr><td>Builder</td><td>Implementa la soluzione entro i confini autorizzati.</td><td>Codice o artefatto.</td></tr><tr><td>Reviewer</td><td>Controlla qualità, sicurezza, assunzioni e regressioni.</td><td>Review e rischi.</td></tr><tr><td>Tester</td><td>Esegue test, simulazioni e controlli visivi.</td><td>Evidenze di verifica.</td></tr><tr><td>Human gate</td><td>Approva azioni esterne, irreversibili o finanziarie.</td><td>Approvazione, modifica o stop.</td></tr></tbody></table>
-        <pre class="workflow-code"><code>{
-  "task": "review_solana_program",
-  "route": [
-    "solana-security-reviewer",
-    "anchor-test-runner",
-    "transaction-simulator"
-  ],
-  "requires_human_approval": true,
-  "verification": [
-    "tests_pass",
-    "no_high_severity_findings",
-    "simulation_completed"
-  ]
-}</code></pre>
-        <p class="note">Lo schema precedente è un esempio didattico di <code>skill_router.json</code>, non il file ufficiale di Theo. Per inserirne la versione reale servirebbe il repository o il link esatto dei workflow a cui ti riferisci.</p>
-      </section>
-
-      <section class="section">
-        <h2>06.2 · Workflow multi-agente: preparare una riunione su Telegram</h2>
-        <p>Questa versione del workflow divide un'automazione in piccoli ruoli, i subagenti. Ogni ruolo ha un compito, rendendo più semplice ragionare su ciò che è autorizzato a fare.</p>
-        <h3>Diagramma di flusso</h3>
-        <pre class="workflow-code"><code>
-Webhook Google Calendar
-                |
-                v
-      calendar-orchestrator
-                |
-    +-----------+-----------+
-    |                       |
-    v                       v
-  event-fetcher         event-enricher
-  Google read only       no secrets/network
-    |                       |
-    +-----------+-----------+
-                |
-                v
-           event-validator
-       policy + controllo duplicati
-                |
-                v
-       telegram-publisher
-       Telegram send only
-                |
-                v
-          delivery record
+    <section class="section">
+      <h2>06.1 · Workflow multi-agente</h2>
+      <p>
+        Una skill diventa più potente quando viene assegnata a un ruolo all'interno di un workflow. Il repository
+        <a href="https://github.com/msitarzewski/agency-agents" target="_blank" rel="noreferrer">Agency Agents</a>
+        è un esempio utile di personas specializzate per ambienti di codifica; un workflow completo necessita ancora di orchestrazione, stato, verifica e un gate umano.
+        Un workflow multi-agente divide un compito più grande in ruoli focalizzati. Ogni ruolo ha una responsabilità ristretta, un contesto limitato e, idealmente, un set di strumenti limitato. Un coordinatore passa risultati strutturati tra i ruoli e decide se il workflow può procedere. Lo scopo non è usare molti agenti solo perché il framework li supporta. Lo scopo è creare confini utili:
+      </p>
+      <ul>
+        <li>Prompt più piccoli sono più facili da testare.</li>
+        <li>Agenti specializzati possono usare modelli e strumenti diversi.</li>
+        <li>Le operazioni sensibili possono essere isolate dai passaggi di ragionamento.</li>
+        <li>I passaggi di consegne strutturati rendono visibili i fallimenti.</li>
+        <li>Il codice deterministico può sostituire un agente ovunque il ragionamento non sia necessario.</li>
+      </ul>
+      <p>Un workflow non è automaticamente multi-agente, ecco tre design diversi:</p>
+      <h4>Un agente con strumenti</h4>
+      <pre class="workflow-code"><code>Richiesta utente
+  → un modello
+  → Strumento Calendario
+  → Strumento Telegram</code></pre>
+  <p>Questo è semplice, ma lo stesso modello può recuperare dati, decidere cosa è sicuro, comporre testo e inviarlo.</p>
+      <h4>Un orchestratore con passaggi deterministici</h4>
+      <pre class="workflow-code"><code>Trigger
+  → leggi Calendario
+  → filtra per policy
+  → formatta testo
+  → deduplica
+  → invia Telegram</code></pre>
+      <p>Questo è spesso il design migliore per notifiche ripetibili. Potrebbe non contenere alcun subagente.</p>
+      <h4>Workflow multi-agente</h4>
+      <pre class="workflow-code"><code>Trigger
+  → orchestratore
+     → ricercatore/fetcher
+     → normalizzatore/arricchitore
+     → validatore
+     → publisher</code></pre>
+      <p>Questo è utile quando il compito implica ambiguità, ricerca, giudizio o permessi diversi per gli strumenti. Gli agenti dovrebbero scambiare dati strutturati piuttosto che lunga prosa conversazionale.</p>
+      <h4>Architettura di base</h4>
+      <pre class="workflow-code"><code>
+┌─────────────┐
+│   Trigger   │  pianificazione, webhook o richiesta utente
+└──────┬──────┘
+       ▼
+┌─────────────┐
+│ Orchestrator│  pianifica, dispaccia e gestisce i fallimenti
+└──────┬──────┘
+       ▼
+┌─────────────┐
+│ Specialista │  esegue un compito focalizzato
+│   agenti    │  con strumenti a privilegio minimo
+└──────┬──────┘
+       ▼
+┌─────────────┐
+│ Passaggi    │  contratti JSON, approvazioni, idempotenza
+│ strutturati │
+└──────┬──────┘
+       ▼
+┌─────────────┐
+│ Effetto     │  invia, scrivi, aggiorna o pubblica
+│ collaterale │
+└─────────────┘
 </code></pre>
-
-<h3>File</h3>
+<h4>Autorità del prompt e autorità del runtime</h4>
+<p>Un prompt dice a un agente cosa dovrebbe fare. Un runtime determina cosa è in grado di fare.</p>
 <pre class="workflow-code"><code>
- calendar-telegram-subagents/.env.example
- calendar-telegram-subagents/WORKFLOW.md
- calendar-telegram-subagents/README.md
- calendar-telegram-subagents/app/README.md
- calendar-telegram-subagents/policies/notification-policy.yaml
- calendar-telegram-subagents/.claude/agents/telegram-publisher.md
- calendar-telegram-subagents/.claude/agents/event-validator.md
- calendar-telegram-subagents/.claude/agents/event-enricher.md
- calendar-telegram-subagents/.claude/agents/event-fetcher.md
- calendar-telegram-subagents/.claude/agents/calendar-orchestrator.md
- calendar-telegram-subagents/.claude/skills/telegram-delivery/SKILL.md
- calendar-telegram-subagents/.claude/skills/event-message-formatting/SKILL.md
- calendar-telegram-subagents/.claude/skills/calendar-event-intake/SKILL.md
+  Autorità del prompt:
+  “Invia solo il messaggio approvato al gruppo Telegram configurato.”
 
+Autorità del runtime:
+  Lo strumento Telegram accetta solo testo approvato e ha un solo ID chat fisso.
+  </code></pre>
+  <p>La seconda è più forte. Un workflow sicuro non si basa solo sulle istruzioni per credenziali, accesso alla rete, selezione della destinazione o autorizzazione alla scrittura.</p>
+<h3>Subagenti Normali</h3>
+<p>Un subagente normale è un loop di modello delegato creato da un framework di agenti. L'agente genitore o il runner normalmente fornisce:</p>
+<ul>
+  <li>Un prompt di sistema o una definizione di ruolo.</li>
+  <li>Una selezione del modello.</li>
+  <li>Un payload di contesto.</li>
+  <li>Una lista di strumenti.</li>
+  <li>Schemi di input e output.</li>
+  <li>Accesso opzionale a file, comandi shell, API o server MCP.</li>
+</ul>
+<p>L'applicazione host deve quindi applicare l'isolamento delle credenziali, le restrizioni di rete, i permessi del filesystem, i tentativi, la persistenza dello stato, i gate di approvazione e la registrazione degli audit. Questi controlli variano tra i framework.</p>
+<p>Un tipico workflow multi-agente normale è:</p>
+<pre class="workflow-code"><code>
+  Agente principale
+  → event-fetcher: recupera dati dal Calendario
+  → event-enricher: normalizza i campi consentiti
+  → event-validator: applica la policy
+  → telegram-publisher: invia il testo approvato
+  </code></pre>
+  <p>Il workflow è portabile, ma la sua sicurezza dipende fortemente dall'implementazione del runner dell'agente e dell'adattatore.</p>
+  <h3>Subagenti IronClaw</h3>
+  <p>Un subagente IronClaw non è semplicemente un subagente normale con “IronClaw” nel nome. Opera all'interno del modello di estensione, permesso-strumento, credenziale, automazione e sandbox di IronClaw.<br />
+IronClaw può fornire:</p>
+<ul>
+  <li>Estensioni installabili tramite Extensions → Registry.</li>
+  <li>Credenziali di deployment tramite Admin → Configuration.</li>
+  <li>Controlli dei permessi globali e per strumento tramite Settings → Tools.</li>
+  <li>Pacchetti di istruzioni montati dall'utente tramite Settings → Skills.</li>
+  <li>Esecuzione pianificata tramite Automations.</li>
+  <li>Confini di strumento ed estensione con capability limitate.</li>
+</ul>
+<p>Il modello può ancora ragionare, ma IronClaw definisce l'autorità effettiva del subagente attraverso la configurazione del runtime.<br />
+Per lo stesso compito da Calendario a Telegram, IronClaw dovrebbe normalmente usare:</p>
+<pre class="workflow-code"><code>
+  Automazione IronClaw
+  → Estensione Google Calendar: recupero in sola lettura
+  → policy deterministica e filtro privacy
+  → formattatore deterministico
+  → controllo di idempotenza/stato
+  → Estensione Telegram: destinazione fissa configurata
 </code></pre>
-<h3>Ruoli degli agenti</h3>
-      <pre class="workflow-code"><code>orchestratore: chiede a ogni operatore di svolgere la sua parte
-        ↓
-fetcher: legge gli eventi del calendario
-        ↓
-validator : controlla la condivisibilità in base alla tempistica
-        ↓
-enricher: raccoglie il contesto autorizzato
-        ↓
-publisher: riepilogo pubblicato nel gruppo
+<p>I cinque ruoli logici esistono ancora, ma non devono essere cinque agenti LLM:</p>
+<table class="comparison">
+<thead>
+<tr>
+<th>Ruolo logico</th>
+<th>Implementazione normale</th>
+<th>Implementazione IronClaw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recupero eventi</td>
+<td>Subagente Calendario e adattatore</td>
+<td>Estensione Google Calendar</td>
+</tr>
+<tr>
+<td>Arricchitore/formattatore</td>
+<td>Subagente o funzione</td>
+<td>Trasformazione locale deterministica</td>
+</tr>
+<tr>
+<td>Validatore</td>
+<td>Subagente validatore o codice di policy</td>
+<td>Passaggio di policy deterministico; modello opzionale solo per ambiguità</td>
+</tr>
+<tr>
+<td>Publisher</td>
+<td>Subagente Telegram e adattatore</td>
+<td>Estensione Telegram</td>
+</tr>
+<tr>
+<td>Orchestratore</td>
+<td>Agente genitore o runner di workflow</td>
+<td>Automazione IronClaw</td>
+</tr>
+<tr>
+<td>Registro di consegna</td>
+<td>Database dell'app o file store</td>
+<td>Stato persistente di IronClaw o strumento di stato con scope</td>
+</tr>
+</tbody>
+</table>
+<h3>Quando usare più agenti</h3>
+<p>Usa più agenti quando si applica almeno una di queste condizioni:</p>
+<ul>
+  <li>Il compito ha domini genuinamente diversi, come ricerca, codifica e revisione.</li>
+  <li>Ruoli diversi richiedono strumenti o credenziali diverse.</li>
+  <li>Un revisore deve contestare in modo indipendente il risultato del primo agente.</li>
+  <li>Il compito è ambiguo e beneficia di interpretazioni separate.</li>
+  <li>Il lavoro parallelo riduce la latenza.</li>
+  <li>Il risultato necessita di una fase di approvazione strutturata prima di un effetto collaterale.</li>
+</ul>
+<p>Evita più agenti LLM quando il compito è una sequenza fissa di chiamate API e controlli di policy. Notifiche di calendario, sincronizzazione di database, calcoli di arbitraggio deterministici e trasformazioni di dati di routine sono solitamente implementati meglio come codice o strumenti vincolati.</p>
+
+<h3>Regole di Progettazione</h3>
+<ol>
+  <li>Dai a ogni agente una responsabilità.</li>
+  <li>Tieni le credenziali fuori dai prompt e dal contesto visibile al modello.</li>
+  <li>Preferisci i confini di capability alle istruzioni verbali.</li>
+  <li>Usa contratti JSON strutturati tra le fasi.</li>
+  <li>Fai in modo che gli strumenti con effetti collaterali accettino input approvati e ristretti.</li>
+  <li>Metti il filtraggio e la deduplicazione prima dell'invio.</li>
+  <li>Rendi espliciti i tentativi e l'idempotenza.</li>
+  <li>Inizia le scritture esterne in modalità dry-run.</li>
+  <li>Registra le decisioni e le ricevute terminali senza registrare i segreti.</li>
+  <li>Sostituisci un agente con codice deterministico quando il giudizio non è richiesto.</li>
+</ol>
+<h4>Sommario</h4>
+<p>Un workflow multi-agente è un pattern architetturale, non una garanzia di sicurezza o qualità. I subagenti normali forniscono ragionamento delegato all'interno di un framework host. I subagenti IronClaw forniscono ragionamento delegato all'interno di un runtime controllato da capability. Il processo di business può sembrare lo stesso, ma il confine del runtime, la proprietà delle credenziali, i permessi degli strumenti e il modello di deployment sono diversi.</p>
+</section>
+
+    <section class="section">
+      <h2>06.2 · Workflow Multi-agente: preparare una riunione su Telegram</h2>
+      <p>Questo esempio costruisce un workflow di notifica di riunione che legge un evento Google Calendar con opt-in e prepara un messaggio Telegram conciso. Viene mostrato intenzionalmente in due forme:</p>
+      <ol>
+        <li>Un workflow multi-agente in stile OpenCode, neutrale rispetto al framework.</li>
+        <li>Un'implementazione IronClaw che utilizza estensioni native e Automazioni.</li>
+      </ol>
+      <p>Le due implementazioni condividono la stessa policy e lo stesso contratto di messaggio. Differiscono per chi possiede gli strumenti e la sicurezza del runtime.</p>
+      <h3>Obiettivo</h3>
+      <p>Quando un evento confermato ha un opt-in esplicito, prepara o invia:</p>
+      <pre class="workflow-code"><code>
+📅 Chiamata Partner Protocollo
+🕒 Mar 18 Ago, 14:00–14:45 (Europe/Rome)
+📍 Google Meet
 </code></pre>
-  <h3>Prompt</h3>
-      <pre class="workflow-code"><code v-pre>Prepara la riunione.
-
-Contesto:
-- Partecipanti: team ingegneria protocolli
-- Tema: audit del nuovo arbitrage router
-- Durata: 45 minuti
-
-## JSON restituito con mappatura variabili (Google Calendar API):
-
-{
-  "event_id": "google_event_id",
-  "calendar_id": "google_calendar_id",
-  "summary": "event.summary",
-  "participants": [
-    "event.attendees[].displayName"
-  ],
-  "start": "event.start.dateTime",
-  "end": "event.end.dateTime",
-  "timezone": "event.start.timeZone",
-  "location": "event.location",
-  "meeting_link": "approved_meeting_link",
-  "updated": "event.updated"
+<p>Il workflow deve:</p>
+<ul>
+  <li>Leggere i dati del Calendario senza modificarli.</li>
+  <li>Richiedere <code>extendedProperties.private.telegram_notify == "true"</code>.</li>
+  <li>Saltare gli eventi annullati.</li>
+  <li>Includere titolo, ora di inizio/fine locale, fuso orario e posizione opzionale.</li>
+  <li>Escludere partecipanti, descrizioni, allegati, organizzatori e URL di conferenza per impostazione predefinita.</li>
+  <li>Usare una destinazione Telegram fissa.</li>
+  <li>Evitare la consegna duplicata.</li>
+  <li>Iniziare in modalità dry-run.</li>
+</ul>
+<h3>Contratto condiviso</h3>
+<h4>Evento Normalizzato</h4>
+<pre class="workflow-code"><code>
+ {
+  "calendar_id": "announcements@example.com",
+  "event_id": "abc123",
+  "updated": "2026-08-18T09:00:00Z",
+  "status": "confirmed",
+  "summary": "Chiamata Partner Protocollo",
+  "start": {
+    "dateTime": "2026-08-18T14:00:00+02:00",
+    "timeZone": "Europe/Rome"
+  },
+  "end": {
+    "dateTime": "2026-08-18T14:45:00+02:00",
+    "timeZone": "Europe/Rome"
+  },
+  "location": "Google Meet",
+  "extendedProperties": {
+    "private": {
+      "telegram_notify": "true"
+    }
+  }
 }
+</code></pre>
+<h4>Messaggio Approvato</h4>
+      <pre class="workflow-code"><code>
+        {
+  "status": "APPROVED",
+  "idempotency_key": "sha256(calendar_id|event_id|updated|CREATED)",
+  "notification_type": "CREATED",
+  "text": "📅 Chiamata Partner Protocollo\n🕒 Mar 18 Ago, 14:00–14:45 (Europe/Rome)\n📍 Google Meet"
+}
+</code></pre>
+  <h3>Opzione A: workflow in stile OpenCode</h3>
+  <p>OpenCode è usato qui come esempio di un runner di agenti neutrale rispetto al framework. I nomi esatti dei comandi e la sintassi di configurazione possono differire in base alla versione di OpenCode o alla configurazione locale. La parte importante è la separazione di ruoli, strumenti, contratti ed effetti collaterali.</p>
+  <h4>Struttura della Directory</h4>
+      <pre class="workflow-code"><code>
+meeting-telegram-opencode/
+├── opencode.json
+├── agents/
+│   ├── meeting-orchestrator.md
+│   ├── calendar-fetcher.md
+│   ├── event-formatter.md
+│   ├── policy-validator.md
+│   └── telegram-publisher.md
+├── contracts/
+│   ├── normalized-event.schema.json
+│   └── approved-message.schema.json
+├── policies/
+│   └── notification-policy.yaml
+├── adapters/
+│   ├── calendar-read
+│   ├── delivery-ledger
+│   └── telegram-send
+└── data/
+    └── delivery-ledger.db
+      </code></pre>
+<h4>Configurazione Opencode</h4>
+      <pre class="workflow-code"><code>
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agents": {
+    "meeting-orchestrator": {
+      "description": "Coordina la preparazione sicura da Calendario a Telegram",
+      "model": "主/your-model",
+      "tools": {
+        "read": true,
+        "calendar-read": true,
+        "delivery-ledger": true,
+        "telegram-send": false
+      }
+    },
+    "calendar-fetcher": {
+      "description": "Recupera e normalizza eventi di sola lettura dal Calendario",
+      "model": "主/fast-model",
+      "tools": {
+        "calendar-read": true,
+        "write": false,
+        "telegram-send": false
+      }
+    },
+    "event-formatter": {
+      "description": "Formatta solo i campi approvati dell'evento",
+      "model": "主/fast-model",
+      "tools": {
+        "read": true,
+        "network": false,
+        "telegram-send": false
+      }
+    },
+    "policy-validator": {
+      "description": "Approva o rifiuta secondo la policy e l'idempotenza",
+      "model": "主/reasoning-model",
+      "tools": {
+        "read": true,
+        "delivery-ledger": true,
+        "network": false,
+        "telegram-send": false
+      }
+    },
+    "telegram-publisher": {
+      "description": "Invia solo testo approvato alla destinazione fissa",
+      "model": "主/fast-model",
+      "tools": {
+        "telegram-send": true,
+        "calendar-read": false,
+        "write": true
+      }
+    }
+  }
+}
+      </code></pre>
+      <p>Sostituisci gli identificatori del modello e i nomi degli strumenti segnaposto con la sintassi supportata dalla versione di OpenCode installata. Questo è un esempio di architettura, non una garanzia che ogni chiave sia accettata invariata da ogni release.</p>
+      <h4>Prompt degli Agenti</h4>
+      <code>calendar fetcher.md</code>
+      <pre class="workflow-code"><code>
+        Recuperi e normalizzi gli eventi di Google Calendar.
 
-Usa lo strumento Google Calendar configurato in sola lettura per trovare l'evento corrispondente. Usa solo dati Calendar verificati e il contesto sopra fornito. Non modificare l'evento. Non inventare partecipanti, dettagli architetturali, rischi, decisioni, scadenze o componenti tecnici. Segna le informazioni non disponibili come `UNKNOWN` o `DA CONFERMARE`.
+Regole:
+- Usa solo l'adattatore di sola lettura del calendario.
+- Non modificare mai i dati del Calendario.
+- Restituisci JSON normalizzato che corrisponda a normalized-event.schema.json.
+- Non decidere se un evento è sicuro da pubblicare.
+- Non chiamare Telegram.
+- Non restituire mai credenziali.
+</code></pre>
+      <code>event formatter.md</code>
+      <pre class="workflow-code"><code>
+        Crei un payload di visualizzazione minimo.
 
-Usa il fuso orario Europe/Rome. Se più eventi corrispondono, elenca i candidati e chiedi chiarimenti. Se nessuno corrisponde, dichiaralo e prosegui usando solo il contesto fornito.
+Includi solo:
+- summary
+- inizio e fine locali
+- fuso orario
+- posizione quando presente
 
-Produce:
+Escludi descrizioni, partecipanti, allegati, organizzatori e URL di conferenza.
+Non inventare mai valori mancanti. Restituisci un output strutturato.
+Non restituire mai credenziali.
+      </code></pre>
+      <code>policy validator.md</code>
+      <pre class="workflow-code"><code>
+        Sei un gate di policy, non un publisher.
 
-1. Obiettivo.
-2. Decisioni da prendere, segnando chiaramente gli elementi che richiedono conferma.
-3. Domande tecniche su routing, pricing, slippage, fees, freschezza dati, ordinamento delle transazioni, fallimenti, permessi, protezione da replay, insediamento cross-chain e monitoraggio. Presentale come domande, non come assunzioni.
-4. Possibili rischi da chiarire, inclusi prezzi obsoleti, MEV, esecuzione parziale, fallimento di bridge o solver, errori su decimali, reorgs, problemi di access-control, problemi di replay/nonce e scarsa osservabilità. Non descriverli come vulnerabilità confermate.
-5. Un'agenda temporizzata per un totale esatto di 45 minuti.
-6. Informazioni mancanti, come versione/commit del router, catene e venue supportate, diagrammi, scope dell'audit, threat model, test, issue aperte, permessi degli signer, fonti di prezzo e proprietari delle decisioni.
-7. Una sezione per messaggi esterni completata usando il bozze fornita e i dettagli verificati dell'incontro.
+Approva solo quando:
+- lo stato è confermato;
+- l'ID del calendario è nella allowlist;
+- private.telegram_notify è uguale a "true";
+- l'evento non è annullato;
+- la chiave di idempotenza non è già stata consegnata;
+- la destinazione è la destinazione fissa configurata.
 
-Non inviare, modificare o pubblicare alcun messaggio esterno. Preserva il significato della bozza. Segna eventuali aggiunte o dettagli incerti.
+Restituisci JSON APPROVATO o RIFIUTATO. Non chiamare mai Telegram.
+Non restituire mai credenziali.
+      </code></pre>
+      <code>telegram publisher.md</code>
+      <pre class="workflow-code"><code>
+        Consegni un messaggio già approvato.
 
-- Messaggio esterno preparato: NO
-- Approvazione umana richiesta: SÌ</code></pre>
-<br />
-<a href="/arch/calendar-telegram-subagents.zip" class="btn" download>Workflow Multi-Agente</a>
-      </section>
-      <section class="section">
+Accetta solo approved-message.json con stato APPROVATO.
+Usa l'adattatore Telegram, che possiede la destinazione fissa.
+Non modificare il testo del messaggio.
+Non selezionare un ID chat.
+Registra l'ID del messaggio Telegram e lo stato terminale.
+Non restituire mai credenziali.
+      </code></pre>
+      <h4>Sequenza di Esecuzione Opencode</h4>
+      <pre class="workflow-code"><code>
+1. Attiva il meeting-orchestrator.
+2. Invia a calendar-fetcher.
+3. Valida lo schema dell'evento normalizzato.
+4. Invia a event-formatter.
+5. Calcola la chiave di idempotenza.
+6. Chiedi a policy-validator per APPROVATO o RIFIUTATO.
+7. Se RIFIUTATO, fermati e registra il motivo.
+8. Se DRY_RUN, salva l'artefatto approvato e fermati.
+9. Se SEND, invia a telegram-publisher.
+10. Registra la ricevuta in delivery-ledger.
+      </code></pre>
+      <p>L'orchestratore non deve mai ricevere credenziali grezze. Il publisher di Telegram non dovrebbe essere in grado di scegliere un ID chat arbitrario. Gli adattatori, non i prompt, dovrebbero applicare queste restrizioni.</p>
+    </section>
+    <section class="section">
       <h2>06.3 · Workflow Ironclaw: preparare una riunione su Telegram</h2>
       <p class="note">
-        Lo stesso workflow può essere implementato in IronClaw, un ambiente locale che
-        fornisce privacy, controllo e un ambiente operativo protetto.
+        Per IronClaw 1.2.0, non copiare letteralmente l'implementazione a cinque agenti di OpenCode. Installa e configura le capability native, quindi crea un'unica Automazione pianificata.
       </p>
-      <p><a href="https://ironclaw.com" target="_blank">Ironclaw</a> mantiene le stesse fasi logiche, ma esprime le fasi sensibili come strumenti con capability limitate. In parole semplici: lo strumento Calendario ottiene l'accesso al Calendario, lo strumento Telegram ottiene l'accesso a Telegram e nessuno dei due dovrebbe ricevere il segreto dell'altro.</p>
-      <h3>Diagramma di flusso</h3>
+      <h3>Installa Estensioni</h3>
       <pre class="workflow-code"><code>
-      IronClaw scheduled job or webhook
-                 |
-                 v
-     calendar-telegram-orchestrator
-                 |
-     +-----------+------------+
-     |           |            |
-     v           v            v
-calendar-read  event-format  delivery-ledger
-Google-only    no network    database-only
-credential     no secrets
-     |                         |
-     +------------+------------+
-                  |
-                  v
-             telegram-send
-      Telegram-only credential
-                  |
-                  v
-          fixed Telegram group
+        Extensions → Registry
       </code></pre>
-      <h3>Come leggerlo</h3>
       <ul>
-        <li><strong>IronClaw</strong> è il <strong>confine di sicurezza</strong> attorno al workflow.</li>
-        <li><code>calendar-read</code> è autorizzato a parlare solo con Google.</li>
-        <li><code>event-format</code> è una trasformazione locale e non necessita di credenziali o accesso a Internet.</li>
-        <li><code>delivery-ledger</code> ricorda se un messaggio è già stato consegnato.</li>
-        <li><code>telegram-send</code> è autorizzato a parlare solo con Telegram e con un gruppo configurato.</li>
+        <li>Estensione Calendar.</li>
+        <li>Estensione Telegram.</li>
       </ul>
-      <h3>Files</h3>
+      <h3>Configura Credenziali</h3>
       <pre class="workflow-code"><code>
-
- calendar-telegram-ironclaw/README-differences.md
- calendar-telegram-ironclaw/.env.example
- calendar-telegram-ironclaw/IRONCLAW_WORKFLOW.md
- calendar-telegram-ironclaw/README.md
- calendar-telegram-ironclaw/docs/DEPLOYMENT.md
- calendar-telegram-ironclaw/policies/notification-policy.yaml
- calendar-telegram-ironclaw/tools/README.md
- calendar-telegram-ironclaw/skills/calendar-telegram-orchestrator.md
----
-</code></pre> 
-<br />
-<a href="/arch/calendar-telegram-ironclaw.zip" class="btn" download>Workflow Ironclaw</a>&nbsp;
-      </section>
-      <section class="section">
-      <h2>06.4 · Workflow Ironclaw Production Ready</h2>
-      <p>Questa versione rimuove i subagenti LLM non necessari e il database. Un unico job Python deterministico esegue il polling di Google Calendar, utilizza un file JSON come memoria e invia messaggi a Telegram. È adatto per IronClaw perché può eseguirlo come un singolo strumento/job con restrizioni e iniettare i suoi segreti in modo sicuro.</p>
-      <h3>Diagramma di flusso</h3>
-      <pre class="workflow-code"><code>
-        IronClaw schedule (every 5–10 minutes)
-                 |
-                 v
-          Python `app.main`
-                 |
-                 v
-     Google Calendar incremental sync
-       read-only OAuth credential
-                 |
-                 v
-       Is event `telegram_notify=true`?
-             | yes       | no
-             v           v
-   Has this event version  skip
-   already been delivered?
-             | no
-             v
-       Format title, time, location
-             |
-             v
-       Telegram `sendMessage`
-        fixed group chat ID only
-             |
-             v
-  Atomically save sync token + delivery key
-      `data/calendar_telegram_state.json`
+        Admin → Configuration
       </code></pre>
-      <h3>Come leggerlo</h3>
-      <ul>
-        <li>Alla <strong>prima esecuzione</strong>, osserva gli eventi del Calendario e memorizza il token di sincronizzazione di Google; non invia nulla.</li>
-        <li>Nelle esecuzioni future, richiede solo le modifiche successive a quel token.</li>
-        <li>Un evento necessita della proprietà di opt-in <code>telegram_notify=true</code> prima di poter essere pubblicato.</li>
-        <li>Il file di stato JSON impedisce che un riavvio o un polling ripetuto inviino due volte la stessa versione dell'evento.</li>
-        <li><code>DRY_RUN</code> formatta e registra i risultati dei test di consegna; <code>SEND</code> abilita la consegna su Telegram.</li>
-      </ul>
-      <h3>Files</h3>
+      <p>Configura i valori del client OAuth di Google tramite la configurazione di Google Calendar. Configura il deployment del bot Telegram tramite i campi di configurazione di Telegram.<br />Tieni i token fuori da Skill, prompt, Markdown, log e contesto del modello.</p>
+      <h3>Configura Permessi</h3>
       <pre class="workflow-code"><code>
- final/requirements.txt
- final/.env.example
- final/README.md
- final/scripts/run.sh
- final/ironclaw/TOOL-CONTRACT.md
- final/policies/notification-policy.json
- final/data/calendar_telegram_state.json
- final/app/main.py
- final/app/telegram_client.py
- final/app/calendar_client.py
- final/app/state.py
- final/app/__init__.py
+        Settings → Tools
+      </code></pre>
+      <p>Usa impostazioni globali e per strumento conservative. Dai a Calendar accesso in sola lettura e a Telegram accesso in invio solo al canale/destinazione configurato. Non concedere all'orchestratore accesso di rete arbitrario o selezione arbitraria del destinatario.</p>
+      <h3>Crea Automazione</h3>
+      <pre class="workflow-code"><code>
+        Automations → New Automation
+      </code></pre>
+      <p>Configurazione:</p>
+      <pre class="workflow-code"><code>
+        Nome: Prepara riunione Calendar con opt-in per Telegram
+      </code></pre>
+      <p>Configurazione:</p>
+      <pre class="workflow-code"><code>
+        Trigger: ogni 5–10 minuti
+        Modalità: DRY_RUN inizialmente
+        Calendario: calendario di annunci in allowlist
+        Destinazione Telegram: destinazione fissa configurata
+      </code></pre>
+      <p>Passaggi:</p>
+      <pre class="workflow-code"><code>
+1. Chiama la capability di lettura/elenco di Google Calendar.
+2. Normalizza gli eventi modificati o imminenti.
+3. Applica la policy di opt-in e privacy.
+4. Formatta localmente il messaggio approvato.
+5. Controlla lo stato di idempotenza persistente.
+6. In DRY_RUN, memorizza/visualizza il messaggio e fermati.
+7. In SEND, chiama l'estensione nativa di Telegram.
+8. Registra la ricevuta di Telegram e lo stato.
+      </code></pre>
+      <h3>Mappatura IronClaw</h3>
+<table class="comparison">
+<thead>
+<tr>
+<th>Ruolo OpenCode</th>
+<th>Equivalente IronClaw</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>calendar-fetcher</td>
+<td>Estensione Google Calendar</td>
+</tr>
+<tr>
+<td>event-formatter</td>
+<td>Formattatore deterministico o Skill vincolata</td>
+</tr>
+<tr>
+<td>policy-validator</td>
+<td>Passaggio di policy deterministico dell'Automazione</td>
+</tr>
+<tr>
+<td>telegram-publisher</td>
+<td>Estensione Telegram</td>
+</tr>
+<tr>
+<td>delivery-ledger</td>
+<td>Stato persistente di IronClaw o strumento di stato</td>
+</tr>
+<tr>
+<td>meeting-orchestrator</td>
+<td>Automazione IronClaw</td>
+</tr>
+</tbody>
+</table>
+<p>Una Skill IronClaw può documentare il workflow o fornire istruzioni, ma l'aggiunta di una Skill non installa un client API. Allo stesso modo, l'installazione di un'estensione non crea automaticamente l'automazione completa; l'Automazione deve ancora essere configurata.</p>
+<h4>Fase di Ragionamento Opzionale</h4>
+<p>Se il workflow della riunione in seguito necessita di un riassunto generato da AI, aggiungi una fase di ragionamento limitata tra il recupero del Calendario e la validazione deterministica:</p>
+<pre class="workflow-code"><code>
+  Estensione Calendar
+  → subagente riassuntore: solo bozza di riassunto
+  → validatore di policy: approva campi e lunghezza
+  → formattatore
+  → Estensione Telegram
 </code></pre>
+<p>Il riassuntore non deve ricevere credenziali di Telegram o autorità di consegna. Il suo output deve essere trattato come una proposta non attendibile finché la validazione deterministica non lo approva.</p>    
+<h4>Checklist di Test</h4>
+<p>Test Dry Run da eseguire prima di abilitare la consegna:</p>
+<ul>
+  <li>La prima sincronizzazione di base non invia nulla.</li>
+  <li>Un evento confermato con opt-in produce un messaggio.</li>
+  <li>Un evento senza la proprietà di opt-in viene rifiutato.</li>
+  <li>Un evento annullato viene rifiutato.</li>
+  <li>Un evento modificato produce una nuova versione.</li>
+  <li>La riesecuzione dello stesso evento non duplica la consegna.</li>
+  <li>Un evento di un'intera giornata viene formattato correttamente.</li>
+  <li>La conversione del fuso orario è corretta.</li>
+  <li>La posizione mancante non crea una riga di posizione vuota.</li>
+  <li>Descrizioni e partecipanti non sono inclusi.</li>
+  <li>Un fallimento di Telegram viene ritentato senza perdere lo stato di idempotenza.</li>
+  <li>Una destinazione sconosciuta non può essere selezionata dal modello.</li>
+</ul>
+<p class="note">Il pacchetto normale in stile OpenCode e il pacchetto IronClaw implementano la stessa policy di notifica delle riunioni, ma non sono lo stesso deployment:
+  <br />
+  OpenCode:<br />
+  agenti neutrali rispetto al framework + adattatori + permessi gestiti dall'host<br />
 <br />
-      <a href="/arch/final.zip" class="btn" download>Workflow Production Ready</a>
-      </section>
-      <section class="section">
-        <h2>07 · Scelte etiche e governance: Panopticon</h2>
-        <p>La prigione di “Ornamento come Crimine / Panopticon” diventa un'infrastruttura etica e reputazionale: osserva, interroga, classifica e adatta la risposta in relazione all'agente e al contesto urbano in cui opera.</p>
-        <div class="grid"><div class="card"><div class="card-image-wrap"><img src="/arch/panopticon.png" alt="Panopticon e Ornamento come Crimine"></div><div class="card-body"><h3>Dalla prigione al protocollo</h3><p>L'ammissione diventa onboarding; l'interrogatorio raccoglie intenti, provenance e policy; la risposta personalizzata diventa remediation o enforcement adattivo. Le reviews sono cavi di connessione con il contesto urbano: segnali di fiducia, conflitto, qualità e rischio.</p></div></div><div class="card"><div class="card-image-wrap"><img src="/arch/panopticon2.png" alt="Connessioni tra Panopticon e città"></div><div class="card-body"><h3>Elementi chiave</h3><ul class="cert-list"><li><b>Gravità:</b> severità della violazione o del rischio.</li><li><b>Riabilitazione:</b> correzione, trasparenza e rientro nel sistema.</li><li><b>Panopticon:</b> osservabilità e accountability.</li><li><b>Cavi:</b> reviews, reputazione e feedback contestuali.</li><li><b>Camere:</b> stati decisionali ridefiniti dai dati.</li></ul></div></div></div>
-      </section>
+IronClaw:<br />
+  estensioni native + configurazione Admin + permessi Strumenti + Automazione<br />
+<br />
+  Usa la versione OpenCode per imparare l'orchestrazione multi-agente e i passaggi strutturati. Usa la versione IronClaw quando il runtime dovrebbe gestire l'iniezione delle credenziali, i confini delle capability, i permessi e l'esecuzione pianificata.
+</p>
+
+</section>
+
+    <section class="section">
+      <h2>07 · Scelte etiche e governance: Panopticon</h2>
+      <p>
+        La prigione di “Ornamento come Crimine / Panopticon” diventa un'infrastruttura etica e reputazionale: osserva, interroga, classifica e adatta la risposta in relazione all'agente e al contesto urbano in cui opera.
+      </p>
+      <div class="grid">
+        <div class="card">
+          <div class="card-image-wrap">
+            <img src="/arch/panopticon.png" alt="Panopticon e Ornamento come Crimine" />
+          </div>
+          <div class="card-body">
+            <h3>Dalla prigione al protocollo</h3>
+            <p>
+              L'ammissione diventa onboarding; l'interrogatorio raccoglie intenti, provenienza e policy; la risposta personalizzata diventa remediation o enforcement adattivo. Le review sono cavi che collegano l'agente al suo contesto urbano: segnali di fiducia, conflitto, qualità e rischio.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-image-wrap">
+            <img src="/arch/panopticon2.png" alt="Connessioni tra Panopticon e la città" />
+          </div>
+          <div class="card-body">
+            <h3>Elementi chiave</h3>
+            <ul class="cert-list">
+              <li><b>Gravità:</b> serietà della violazione o del rischio.</li>
+              <li><b>Riabilitazione:</b> correzione, trasparenza e reinserimento.</li>
+              <li><b>Panopticon:</b> osservabilità e accountability.</li>
+              <li><b>Cavi:</b> review, reputazione e feedback contestuale.</li>
+              <li><b>Camere:</b> stati decisionali ridefiniti dai dati in arrivo.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
       <section class="section">
         <h2>08 · Asteroid: IronClaw e l'ambiente locale</h2>

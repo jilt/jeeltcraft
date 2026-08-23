@@ -7,7 +7,7 @@
       </p>
       <div class="tag-row">
         <span class="tag">Prompt engineering</span>
-        <span class="tag">Hermes Agent</span>
+        <span class="tag">Ironclaw</span>
         <span class="tag">Skills</span>
         <span class="tag">Multi-agent workflows</span>
         <span class="tag">Privacy locale</span>
@@ -249,7 +249,7 @@ Prompt 5: correggi solo gli errori rilevati e restituisci il diff.</code></pre>
             <pre class="workflow-code"><code>/goal
 Refactor the HTML lesson.
 
-outcome: replace the Pi workflow with Hermes
+outcome: replace the Pi workflow with Ironclaw
 verification: required sections and links exist
 constraints: preserve Italian and project references
 boundaries: edit only src/lezione.html
@@ -314,7 +314,7 @@ stop when: credentials or external side effects are required</code></pre>
         <h3>Contesto: memoria, CLI e MCP</h3>
         <p>Il contesto non è solo il prompt: è anche lo stato della sessione, la memoria, i file caricati, gli strumenti attivi e gli output precedenti.</p>
         <ul class="cert-list"><li><code>/clear</code> — svuota il contesto conversazionale corrente.</li><li><code>/reset</code> — riporta sessione o configurazione a uno stato iniziale, secondo il tool.</li><li><code>/compact</code> — comprime la cronologia mantenendo il contesto più rilevante.</li><li><code>/doctor</code> — esegue controlli diagnostici.</li><li><code>/mcp</code> — mostra o gestisce server MCP e strumenti disponibili.</li><li><code>/memory</code> — consulta o aggiorna la memoria persistente.</li><li><code>/rewind</code> — torna a uno stato precedente della sessione o del lavoro.</li></ul>
-        <p class="note">Questi nomi non sono uno standard universale: Claude, OpenCode, Hermes e altri CLI possono implementare comandi diversi.</p>
+        <p class="note">Questi nomi non sono uno standard universale: Claude, OpenCode, Ironclaw e altri CLI possono implementare comandi diversi.</p>
         <table class="comparison"><thead><tr><th>CLI</th><th>MCP</th></tr></thead><tbody><tr><td>L'agente esegue comandi locali o remoti come <code>pytest</code>, <code>cargo test</code> o <code>git</code>.</td><td>L'agente usa server che espongono strumenti e risorse con un'interfaccia standardizzata.</td></tr><tr><td>Ottimo per script, build, test e pipeline.</td><td>Ottimo per collegare database, browser, filesystem e servizi a più client.</td></tr><tr><td>Dipende da ambiente, permessi e output testuale.</td><td>Espone capability e schemi più strutturati.</td></tr></tbody></table>
       </section>
           </div>
@@ -345,7 +345,7 @@ stop when: credentials or external side effects are required</code></pre>
           <div class="card-body">
             <h3>Curatela · identità e regole</h3>
             <p><code>SOUL.md</code> definisce identità, tono e stile generale. <code>AGENTS.md</code> contiene anche istruzioni specifiche del progetto: convenzioni, percorsi, comandi, test e limiti.</p>
-            <a href="https://hermes-agent.nousresearch.com/docs/guides/use-soul-with-hermes" target="_blank" rel="noreferrer">Hermes: SOUL.md</a>
+            <a href="https://docs.ironclaw.com/capabilities/memory/identity.md" target="_blank" rel="noreferrer">Ironclaw: SOUL.md</a>
           </div>
         </div>
         <div class="card">
@@ -405,7 +405,7 @@ Use this skill when reviewing an existing HTML page.
 
 ## Output
 Return findings grouped by severity and a verification checklist.</code></pre>
-        <p>La creazione manuale formalizza una procedura che conosci già. Nel caso di Hermes, l'uso ripetuto può invece far emergere pattern operativi che poi vengono trasformati in skills riusabili: è il passaggio da operazione occasionale a competenza dell'ambiente.</p>
+        <p>La creazione manuale formalizza una procedura che conosci già. Nel caso di Ironclaw, l'uso ripetuto può invece far emergere pattern operativi che poi vengono trasformati in skills riusabili se il tool corretto è abilitato: è il passaggio da operazione occasionale a competenza dell'ambiente.</p>
       </section>
 
     <section class="section">
@@ -1032,8 +1032,8 @@ IronClaw:<br />
         <p>L'Asteroid diventa un ambiente abitabile per un agente locale. I moduli sono strumenti, le gallerie sono flussi di dati e le collisioni con la superficie rappresentano i rischi che emergono quando un modello può leggere file, usare credenziali, navigare o eseguire comandi.</p>
         <div class="grid"><div class="card"><div class="card-image-wrap"><img src="/arch/astero.png" alt="Progetto Asteroid"></div><div class="card-body"><h3>Habitat operativo</h3><p>Il sistema utile non è quello senza confini, ma quello che vive in un ambiente progettato: directory autorizzate, permessi minimi, vault per segreti, logging e conferma umana per azioni irreversibili.</p></div></div><div class="card"><div class="card-image-wrap"><img src="/arch/asteroide-CAD-small.png" alt="Sezione CAD del progetto Asteroid"></div><div class="card-body"><h3>Collisioni e resistenze</h3><ul class="cert-list"><li><b>Collisione:</b> prompt injection o istruzioni ostili nascoste nei dati.</li><li><b>Resistenza:</b> confini di accesso e sandbox che limitano il movimento dell'agente.</li><li><b>Perdita di pressione:</b> esposizione involontaria di credenziali o dati privati.</li><li><b>Traiettoria:</b> azione dell'agente verso sistemi esterni, da verificare prima dell'esecuzione.</li></ul></div></div></div>
         <div class="grid"><div class="card"><div class="card-body"><h3>Use case 1 · repository sensibile</h3><p>IronClaw può essere introdotto come ambiente orientato a privacy e controllo locale per analizzare codice, eseguire test e preparare patch mantenendo i file entro uno scope autorizzato.</p></div></div><div class="card"><div class="card-body"><h3>Use case 2 · workflow blockchain</h3><p>L'agente può preparare report, confrontare dati, simulare operazioni e proporre transazioni. La firma o l'uso di fondi devono restare dietro un gate umano esplicito.</p></div></div><div class="card"><div class="card-body"><h3>Use case 3 · documenti privati</h3><p>L'agente può indicizzare note e documentazione interna, ma il perimetro dei dati, il modello utilizzato e il percorso di uscita devono essere dichiarati prima dell'uso.</p></div></div></div>
-        <div class="link-row"><a href="https://www.ironclaw.com/" target="_blank" rel="noopener noreferrer">IronClaw</a><a href="https://hermes-agent.nousresearch.com/docs/" target="_blank" rel="noopener noreferrer">Hermes Agent</a><a href="https://openrouter.ai/" target="_blank" rel="noopener noreferrer">OpenRouter</a></div>
-        <p class="note"><b>Separazione dei livelli:</b> OpenRouter può essere usato come access layer ai modelli; Hermes come runtime di workflow e orchestrazione; IronClaw come ambiente orientato a privacy e controllo locale. Non sono la stessa cosa e non garantiscono automaticamente lo stesso modello di sicurezza.</p>
+        <div class="link-row"><a href="https://www.ironclaw.com/" target="_blank" rel="noopener noreferrer">IronClaw</a><a href="https://openrouter.ai/" target="_blank" rel="noopener noreferrer">OpenRouter</a></div>
+        <p class="note"><b>Separazione dei livelli:</b> OpenRouter può essere usato come access layer ai modelli; IronClaw come ambiente orientato a privacy e controllo locale e come runtime di workflow e orchestrazione. Non sono la stessa cosa e non garantiscono automaticamente lo stesso modello di sicurezza.</p>
       </section>
       <div class="divider"></div>
       <section class="section" id="playground">
@@ -1071,7 +1071,7 @@ useHead({
     {
       name: 'description',
       content:
-        'Una lezione in italiano che collega metafore architettoniche post-singolarità con Generative AI, prompting, Hermes, skills, workflow multi-agente, MCP, OpenRouter e IronClaw.'
+        'Una lezione in italiano che collega metafore architettoniche post-singolarità con Generative AI, prompting, Ironclaw, skills, workflow multi-agente, MCP, OpenRouter e IronClaw.'
     },
     {
       property: 'og:title',

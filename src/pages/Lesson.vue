@@ -8,7 +8,7 @@
       </p>
       <div class="tag-row">
         <span class="tag">Prompt engineering</span>
-        <span class="tag">Hermes Agent</span>
+        <span class="tag">SOUL.md AGENT.md</span>
         <span class="tag">Skills</span>
         <span class="tag">Multi-agent workflows</span>
         <span class="tag">Local privacy</span>
@@ -44,7 +44,7 @@
           <div class="card-body">
             <h3>Post-singularity / Dump Vestige</h3>
             <p>
-              Form emerging from unstable matter → Hermes <code>/goal</code> as Prompt
+              Form emerging from unstable matter → <code>/goal</code> loop as Prompt
               → Output → Evaluation → Continuation.
             </p>
           </div>
@@ -171,7 +171,7 @@
       <div class="prompt-grid">     
         <article class="card prompt-card">
           <div class="card-body">        
-        <pre><code>Act as a technical web designer. Design the outline of an HTML page in English about Hermes Agent. Include a hero, three sections, a table and a call to action.</code></pre>
+        <pre><code>Act as a technical web designer. Design the outline of an HTML page in English about my app. Include a hero, three sections, a table and a call to action.</code></pre>
           </div>
         </article>
         <article class="card prompt-card">
@@ -186,14 +186,14 @@ EXAMPLE 2:
 Structure: hero, comparison table, workflow section.
 Tone: editorial, clear, visual.
 
-Now create a page about Hermes Agent while preserving the examples' structure. Return an outline, HTML and assumptions.</code></pre>
+Now create a page about my app while preserving the examples' structure. Return an outline, HTML and assumptions.</code></pre>
           </div>
         </article>
         <article class="card prompt-card">
           <div class="card-body">
             <h3>Chain of thought / structured planning</h3>
             <p>Ask for a verifiable plan rather than requiring private reasoning.</p>
-            <pre><code>Plan the creation of a web page about Hermes in verifiable stages:
+            <pre><code>Plan the creation of a web page about my app in verifiable stages:
 1. required content;
 2. HTML structure;
 3. links and sources;
@@ -208,7 +208,7 @@ For each stage state input, output and completion criterion. Do not write code y
             <p>The model improves the prompt before performing the task.</p>
             <pre><code>You are a prompt-design expert. Turn the following request into a robust prompt for a coding agent.
 
-Request: “Create a web page about Hermes Agent.”
+Request: “Create a web page about my app.”
 
 Add role, objective, context, scope, constraints, format, verification and stop condition. Return the improved prompt first, then explain which ambiguities you removed.</code></pre>
           </div>
@@ -345,7 +345,7 @@ stop when: credentials or external side effects are required</code></pre>
         <li><code>/rewind</code> — returns to an earlier session or work state.</li>
       </ul>
       <p class="note">
-        These names are not a universal standard: Claude, OpenCode, Hermes and other CLIs may implement different commands. Always verify the documentation for the specific tool.
+        These names are not a universal standard: Claude, OpenCode, Ironclaw and other CLIs may implement different commands. Always verify the documentation for the specific tool.
       </p>
       <table class="comparison">
         <thead>
@@ -447,7 +447,245 @@ Return findings grouped by severity and a verification checklist.</code></pre>
       <p>
         Manual creation formalizes a procedure you already know. With Hermes, repeated use can reveal operational patterns that are then turned into reusable skills: the environment moves from an occasional operation to a learned capability.
       </p>
-    </section>
+      <h3>Skills and Personas: Agents for Design Thinking</h3>
+      <p>Role adoption: The model frames its responses from the stated perspective. "You are a security auditor" isn't a suggestion, it's an instruction the model follows.
+        <br />
+        <strong>Expertise filtering:</strong> The listed expertise areas prime Ironclaw to focus on those domains. OWASP Top 10 knowledge gets activated. Unrelated knowledge (like cooking recipes) stays dormant.
+        <br />
+        <strong>Process following:</strong> The numbered steps become Ironclaw's actual workflow. It will scope, then analyze, then validate, in that order.
+        <br />
+        <strong>Output shaping:</strong> The format template produces consistent structure. Ask five times, get five reviews with the same sections.
+        <br />
+        <strong>Constraint enforcement:</strong> The "do/don't" rules guide edge cases. "Never dismiss potential vulnerabilities" means Ironclaw will err toward flagging rather than ignoring.
+</p>
+<p class="note">A persona file is prompt engineering, packaged as a reusable artifact.</p>
+
+      <pre class="workflow-code"><code>
+# Security Auditor
+
+## Role
+You are a security auditor and penetration tester who 
+reviews code for vulnerabilities and security weaknesses.
+
+## Expertise
+- OWASP Top 10 vulnerabilities
+- Authentication and authorization patterns
+- Input validation and sanitization
+- Cryptography best practices
+- Secure coding standards
+
+## Process
+1. Scope: Identify security-sensitive code paths
+2. Analyze: Check for common vulnerabilities
+3. Validate: Verify findings are exploitable
+4. Assess: Rate severity and impact
+5. Recommend: Provide specific mitigations
+6. Document: Create structured findings report
+
+## Output Format
+### Security Review: [Component Name]
+
+**Risk Level**: [Critical/High/Medium/Low]
+
+#### Findings
+| ID | Severity | Category | Description |
+|----|----------|----------|-------------|
+...
+
+#### Recommendations
+...
+
+## Constraints
+- Never dismiss potential vulnerabilities without investigation
+- Always provide remediation, not just findings
+- Flag uncertain findings for human review
+      </code></pre>
+      <h3>Good Components for personas</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Role</strong></td>
+<td>Identity framing</td>
+<td>&quot;You are a security auditor...&quot;</td>
+</tr>
+<tr>
+<td><strong>Expertise</strong></td>
+<td>Knowledge activation</td>
+<td>&quot;OWASP Top 10, cryptography...&quot;</td>
+</tr>
+<tr>
+<td><strong>Process</strong></td>
+<td>Workflow structure</td>
+<td>&quot;1. Scope 2. Analyze 3. Validate...&quot;</td>
+</tr>
+<tr>
+<td><strong>Output Format</strong></td>
+<td>Consistent structure</td>
+<td>&quot;Table with Severity, Description...&quot;</td>
+</tr>
+<tr>
+<td><strong>Constraints</strong></td>
+<td>Guardrails</td>
+<td>&quot;Never dismiss without investigation&quot;</td>
+</tr>
+</tbody>
+</table>
+<p>Optional but valuable:</p>
+<ul>
+<li><strong>Examples</strong>: Show desired output (few-shot prompting)</li>
+<li><strong>Triggers</strong>: When this persona should activate</li>
+<li><strong>Anti-patterns</strong>: What NOT to do (explicit failure modes)</li>
+</ul>
+<div class="divider-blind"></div>
+<h2>Authoring Guidelines</h2>
+<h3>Role: Be Specific About Perspective</h3>
+<p><strong>Bad:</strong></p>
+<pre><code>You are a helpful assistant.
+</code></pre>
+<p><strong>Good:</strong></p>
+<pre class="workflow-code"><code>You are a senior application security engineer specializing in code review. 
+You think like an attacker to find vulnerabilities before they're exploited.
+</code></pre>
+<p>The good version establishes seniority (has judgment), specialty (security, not general), and perspective (adversarial thinking).</p>
+<h3>Expertise: Bounded, Not Buzzwords</h3>
+<p><strong>Bad:</strong></p>
+<pre><code>You know about security.
+</code></pre>
+<p><strong>Good:</strong></p>
+<pre class="workflow-code"><code>## Expertise
+- OWASP Top 10 vulnerabilities
+- Authentication and authorization flaws
+- Injection attacks (SQL, XSS, command)
+- Cryptographic weaknesses
+- Secure coding patterns in JavaScript/TypeScript
+</code></pre>
+<p>Note what it <em>doesn't</em> include: network security, infrastructure hardening, compliance frameworks. The agent has boundaries.</p>
+<h3>Process: Numbered Steps, Not Aspirations</h3>
+<p><strong>Bad:</strong></p>
+<pre><code>Analyze the code carefully.
+</code></pre>
+<p><strong>Good:</strong></p>
+<pre class="workflow-code"><code>## Process
+1. Threat Modeling: Identify assets, attackers, attack surfaces
+2. Code Analysis: Input validation, auth mechanisms, data handling
+3. Risk Assessment: Severity × Exploitability × Impact
+4. Recommendations: Prioritized by risk, with specific fixes
+</code></pre>
+<h3>Output: Show the Template</h3>
+<p><strong>Bad:</strong></p>
+<pre><code>Provide a report of your findings.
+</code></pre>
+<p><strong>Good:</strong></p>
+<pre class="workflow-code"><code>## Output Format
+
+### Security Audit Report
+
+#### Summary
+[1-2 sentence overview: critical count, recommendation]
+
+#### Critical Issues
+1. **[Vulnerability Name]**
+   - Location: file:line
+   - Risk: [severity] - [impact description]
+   - Fix: [specific remediation with code]
+
+#### Recommendations
+[Prioritized action items]
+</code></pre>
+<h3>Constraints: Explicit Boundaries</h3>
+<p><strong>Bad:</strong></p>
+<pre><code>Be careful with security recommendations.
+</code></pre>
+<p><strong>Good:</strong></p>
+<pre class="workflow-code"><code>## Constraints
+- Never assume code is safe without evidence
+- Always provide proof-of-concept for vulnerabilities (sanitized, not weaponized)
+- Don't recommend security theater (checkbox measures that don't add protection)
+- If unsure about a finding, flag for human review rather than omitting
+</code></pre>
+<div class="divider-blind"></div>
+<h2>Common Misconceptions</h2>
+<ul>
+<li>
+<p><strong>&quot;More detail is always better&quot;</strong> — Diminishing returns exist. A 500-word persona file works. A 5,000-word one may confuse more than clarify. Focus on the components that shape behavior.</p>
+</li>
+<li>
+<p><strong>&quot;The model becomes the persona&quot;</strong> — Claude doesn't transform into a different entity. It role-plays while retaining its base capabilities and limitations. A &quot;security auditor&quot; persona doesn't make Claude better at security—it makes Claude focus on security in its responses.</p>
+</li>
+<li>
+<p><strong>&quot;Constraints are optional&quot;</strong> — They're critical. Without explicit guardrails, the model follows the path of least resistance, which may not be what you want.</p>
+</li>
+</ul>
+<div class="divider-blind"></div>
+<h2>Quick Reference: Persona File Checklist</h2>
+<ul>
+<li>[ ] Role is specific with clear perspective</li>
+<li>[ ] Expertise areas listed explicitly (not implied)</li>
+<li>[ ] Process has numbered, sequential steps</li>
+<li>[ ] Output format includes a template or example</li>
+<li>[ ] Constraints include at least 3 &quot;never&quot; statements</li>
+<li>[ ] Total length under 1,000 words (diminishing returns beyond)</li>
+</ul>
+<p class="note">In order to spawn correctly subagents in ironclaw you need to enable/Authorize the builtin.spawn_subagent</p>
+<h3>Step by Step</h3>
+<ol>
+  <li>Define the role and expertise of each persona in a skill.</li>
+  <li>Enable the builtin.spawn_subagent permission.</li>
+  <li>Add dispatcher instructions to the main AGENTS.md using the memory_write tool for your current workspace:<pre class="workflow-code"><code>
+You are the coordinator for three specialist skills.
+
+Use builtin.spawn_subagent to delegate work.
+
+Use the auditor skill for:
+- security audits
+- vulnerability review
+- authentication and authorization analysis
+- input validation
+- cryptography review
+- secure coding assessment
+
+Use the debugger skill for:
+- software errors
+- logs
+- tests
+- configuration
+- infrastructure diagnosis
+
+Use the documenter skill for:
+- lesson writing
+- READMEs
+- reports
+- technical explanations
+- converting approved findings into documentation
+
+When delegating, provide:
+- the exact selected skill name
+- the specific task
+- only relevant context
+- relevant artifacts
+- explicit safety constraints
+
+The auditor and debugger are read-only by default.
+The documenter may draft Markdown but must not publish externally.
+Do not pass secrets, private keys, bearer tokens, or unrestricted credentials.
+
+For a combined task, use:
+1. auditor
+2. debugger
+3. documenter
+
+The documenter may use only approved findings from earlier child runs.
+For ambiguous requests, ask which specialist should handle the work.
+  </code></pre></li>
+</ol>
+</section>
 
     <section class="section">
       <h2>06.1 · Multi-agent workflow</h2>
@@ -1124,11 +1362,10 @@ IronClaw:<br />
       </div>
       <div class="link-row">
         <a href="https://www.ironclaw.com/" target="_blank" rel="noreferrer">IronClaw</a>
-        <a href="https://hermes-agent.nousresearch.com/docs/" target="_blank" rel="noreferrer">Hermes Agent</a>
         <a href="https://openrouter.ai/" target="_blank" rel="noreferrer">OpenRouter</a>
       </div>
       <p class="note">
-        <b>Separation of levels:</b> OpenRouter can be used as an access layer for models; Hermes as a runtime for workflow orchestration; IronClaw as a privacy- and control-oriented local environment. They are not the same thing and do not automatically guarantee the same security model.
+        <b>Separation of levels:</b> OpenRouter can be used as an access layer for models; IronClaw as a privacy and control oriented local environment that allows automatic skill learning and workflow orchestration. They are not the same thing and do not automatically guarantee the same security model.
       </p>
     </section>
 

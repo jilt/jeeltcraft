@@ -280,7 +280,7 @@ stop when: credentials or external side effects are required</code></pre>
             <h3>More articulated loops</h3>
             <p>
               In agentic tools, a loop can include subgoals, background processes,
-              tests, reviews, CI waits and a turn budget. <a href="/arch/goal.md" target="_blank" rel="noreferrer">Here is a simplified example</a> that you can place in <code>src/opencode/commands/goal.md</code>,
+              tests, reviews, CI waits and a turn budget. <a href="/arch/goal.md" target="_blank" rel="noreferrer">Here is a simplified example</a> that you can place in <code>.opencode/commands/goal.md</code>,
               in order to run this you can try the prompt:
               <code>/goal review this repo and tighten the liquidation bot retry logic</code>
             </p>
@@ -1059,9 +1059,9 @@ IronClaw:<br />
   <p>The registration file simply advertises the agent's public endpoints (A2A agent card, MCP server, web) which point back to the NEAR-hosted service. What must be documented precisely is the control relationship: the NEAR account and the EVM passport owner are coordinated by the same operator, but they are not cryptographically the same identity unless the <a href="https://docs.near.org/chain-abstraction/chain-signatures" target="_blank">account-abstraction</a> mechanism makes them so.</p>
   <h4>Other identity systems (worth mentioning)</h4>
   <ul>
-    <li>IdentityClaw Passport answers "can this agent authenticate into this network?" It provides the stable token ID, login flow, and A2A/webhook surfaces used for Last Cradle onboarding. Keep it for game participation.</li>
+    <li>IdentityClaw Passport answers "can this agent authenticate into this network?" It provides the stable token ID, login flow, and A2A/webhook surfaces used for <a href="https://lastcrandle.io" target="_blank">Last Cradle onboarding</a> natively on Near protocol. Keep it for game participation.</li>
     <li>ERC-8004 answers "can this agent be discovered, evaluated, and independently validated across ecosystems?" It is the public trust layer this lesson builds.</li>
-    <li>Kite answers "who delegated authority to this agent, and within what limits?" Its hierarchical User → Agent → Session model with programmable spending and scope constraints is an optional authority/payment layer, included only if the challenge requires it. It is not a replacement for any layer above.</li>
+    <li><a href="https://agentpassport.ai/" target="_blank">Kite</a> answers "who delegated authority to this agent, and within what limits?" Its hierarchical User → Agent → Session model with programmable spending and scope constraints is an optional authority/payment layer, included only if the challenge requires it. It is not a replacement for any layer above.</li>
   </ul>
   <h3>Final Takeaway</h3>
   <p>An ERC-8004 passport does not make an agent trustworthy by itself it makes the agent's identity, evidence, and track record discoverable and verifiable. In this flow, NEAR and IronClaw provide the controlled runtime, Intel TDX provides hardware-backed execution evidence, an independent validator turns that evidence into an ERC-8004 validation record, and real interactions accumulate into ERC-8004 reputation. The result is a NEAR-native agent with a portable, publicly verifiable trust profile without minting anything on Ethereum mainnet.</p>

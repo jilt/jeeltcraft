@@ -568,16 +568,16 @@ You think like an attacker to find vulnerabilities before they're exploited.
 - If unsure about a finding, flag for human review rather than omitting
 </code></pre>
 <div class="divider-blind"></div>
-<h2>Comunità fraintendimenti</h2>
+<h2>Errori Comuni</h2>
 <ul>
 <li>
-<p><strong>&quot;Più dettaglio è sempre meglio&quot; — Esistono rendimenti decrescenti. Un file di persona da 500 parole funziona. Un file da 5.000 parole può confondere più di quanto chiarisca. Concentrati sui componenti che modellano il comportamento.</p>
+<p>&quot;Più dettaglio è sempre meglio&quot; — Esistono rendimenti decrescenti. Un file di persona da 500 parole funziona. Un file da 5.000 parole può confondere più di quanto chiarisca. Concentrati sui componenti che modellano il comportamento.</p>
 </li>
 <li>
-<p><strong>&quot;Il modello diventa la persona&quot; — Claude non si trasforma in un'entità diversa. Ruolo-plays mantenendo le sue capacità di base e i limiti. Una &quot;persona di auditor di sicurezza&quot; non rende Claude migliore nella sicurezza—lo rende più concentrato sulla sicurezza nelle sue risposte.</p>
+<p>&quot;Il modello diventa la persona&quot; — Claude non si trasforma in un'entità diversa. Ruolo-plays mantenendo le sue capacità di base e i limiti. Una &quot;persona di auditor di sicurezza&quot; non rende Claude migliore nella sicurezza—lo rende più concentrato sulla sicurezza nelle sue risposte.</p>
 </li>
 <li>
-<p><strong>&quot;I vincoli sono opzionali&quot; — Sono critici. Senza guardrail espliciti, il modello segue il percorso di minor resistenza, che potrebbe non essere ciò che vuoi.</p>
+<p>&quot;I vincoli sono opzionali&quot; — Sono critici. Senza guardrail espliciti, il modello segue il percorso di minor resistenza, che potrebbe non essere ciò che vuoi.</p>
 </li>
 </ul>
 <div class="divider-blind"></div>

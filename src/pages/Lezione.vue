@@ -576,19 +576,6 @@ Per lo stesso compito da Calendario a Telegram, IronClaw dovrebbe normalmente us
 </ul>
 <p>Evita più agenti LLM quando il compito è una sequenza fissa di chiamate API e controlli di policy. Notifiche di calendario, sincronizzazione di database, calcoli di arbitraggio deterministici e trasformazioni di dati di routine sono solitamente implementati meglio come codice o strumenti vincolati.</p>
 
-<h3>Regole di Progettazione</h3>
-<ol>
-  <li>Dai a ogni agente una responsabilità.</li>
-  <li>Tieni le credenziali fuori dai prompt e dal contesto visibile al modello.</li>
-  <li>Preferisci i confini di capability alle istruzioni verbali.</li>
-  <li>Usa contratti JSON strutturati tra le fasi.</li>
-  <li>Fai in modo che gli strumenti con effetti collaterali accettino input approvati e ristretti.</li>
-  <li>Metti il filtraggio e la deduplicazione prima dell'invio.</li>
-  <li>Rendi espliciti i tentativi e l'idempotenza.</li>
-  <li>Inizia le scritture esterne in modalità dry-run.</li>
-  <li>Registra le decisioni e le ricevute terminali senza registrare i segreti.</li>
-  <li>Sostituisci un agente con codice deterministico quando il giudizio non è richiesto.</li>
-</ol>
 <h4>Sommario</h4>
 <p>Un workflow multi-agente è un pattern architetturale, non una garanzia di sicurezza o qualità. I subagenti normali forniscono ragionamento delegato all'interno di un framework host. I subagenti IronClaw forniscono ragionamento delegato all'interno di un runtime controllato da capability. Il processo di business può sembrare lo stesso, ma il confine del runtime, la proprietà delle credenziali, i permessi degli strumenti e il modello di deployment sono diversi.</p>
 </section>

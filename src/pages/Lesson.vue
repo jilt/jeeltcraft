@@ -854,19 +854,6 @@ For the same Calendar-to-Telegram task, IronClaw should normally use:</p>
 </ul>
 <p>Avoid multiple LLM agents when the task is a fixed sequence of API calls and policy checks. Calendar notifications, database synchronization, deterministic arbitrage calculations, and routine data transformations are usually better implemented as code or constrained tools.</p>
 
-<h3>Design Rules</h3>
-<ol>
-  <li>Give each agent one responsibility.</li>
-  <li>Keep credentials out of prompts and model-visible context.</li>
-  <li>Prefer capability boundaries over verbal instructions.</li>
-  <li>Use structured JSON contracts between stages.</li>
-  <li>Make side-effecting tools accept approved, narrow inputs.</li>
-  <li>Put filtering and deduplication before sending.</li>
-  <li>Make retries and idempotency explicit.</li>
-  <li>Start external writes in dry-run mode.</li>
-  <li>Log decisions and terminal receipts without logging secrets.</li>
-  <li>Replace an agent with deterministic code when judgment is not required.</li>
-</ol>
 <h4>Summary</h4>
 <p>A multi-agent workflow is an architectural pattern, not a guarantee of safety or quality. Normal subagents provide delegated reasoning inside a host framework. IronClaw subagents provide delegated reasoning inside a capability-controlled runtime. The business process may look the same, but the runtime boundary, credential ownership, tool permissions, and deployment model are different.</p>
 </section>

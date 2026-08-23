@@ -286,7 +286,8 @@ stop when: credentials or external side effects are required</code></pre>
             </p>
             <p>
               Repeated operations can then become skills: the system moves from “perform
-              this operation” to “recognize and reuse this procedure”. <a href="/arch/SKILL.md" target="_blank" rel="noreferrer">This SKILL</a> can be used within Ironclaw to perform a /goal loop, prompting is the same as above.
+              this operation” to “recognize and reuse this procedure”. <a href="/arch/SKILL.md" target="_blank" rel="noreferrer">This SKILL</a> can be used within Ironclaw to perform a /goal loop, explicit invocation is required:
+              <code>/skill persistent-goal-loop port feature X and keep going until test Y pass</code>
             </p>
             <p>
               the /goal command is now available and can be used in most common harnesses, with many users employing it to log errors and develop custom skills.

@@ -263,11 +263,13 @@ stop when: credentials or external side effects are required</code></pre>
           <div class="card-body">
             <h3>Loop più articolati</h3>
             <p>
-              In strumenti agentici il loop può includere sottogoal, processi in background, test, review, attese su CI e un budget di turni. Hermes documenta proprio questa logica:
-              un judge controlla il completamento e continua quando il risultato non è ancora verificato.
+              In strumenti agentici il loop può includere sottogoal, processi in background, test, review, attese e un budget di turni. <a href="/arch/goal.md" target="_blank" rel="noreferrer">Qui c'e' un esempio semplificato</a> che potete conservare al percorso <code>src/opencode/commands/goal.md</code>,
+              Un esempio di prompt puo' essere:
+              <code>/goal revisiona questo repository e restringi la logica del bot di liquidazione dei fondi</code>
             </p>
             <p>
-              Le operazioni ricorrenti possono poi diventare skills: il sistema passa da “esegui questa operazione” a “riconosci e riusa questa procedura”.
+              Operazioni ripetute possono diventare skills: il sistema passa da “esegui questa operazione” a “riconosci e riusa questa procedura”. <a href="/arch/SKILL.md" target="_blank" rel="noreferrer">Questa SKILL</a> puo' essere usanta nell'interfaccia locale e online di Ironclaw come un /goal loop, è necessario evocarla in modo esplicito:
+              <code>/skill persistent-goal-loop porta la funzionalità X finchè il codice non passa il test Y</code>
             </p>
             <p>
               Il comando /goal adesso si trova ed è utilizzabile in quasi tutte le harness di uso comune, molti lo usano per loggare gli errori ed elaborare custom skills.

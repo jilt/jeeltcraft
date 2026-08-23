@@ -21,12 +21,12 @@
     </div>
 
     <section class="section">
-      <h2>Concetti chiave e nuova mappa</h2>
+      <h2>Mappa concetti chiave</h2>
       <p>
         La lezione collega Generative AI, Machine Learning, LLM e prompting ad architetture concettuali di
         <em>Progettazione per la AI</em>. Partiamo dai prompt verso i workflow: prima si disegna l'istruzione,
-        poi si osserva l'output, lo si valuta, lo si trasforma in skill e infine lo si colloca dentro un ambiente agentico
-        con strumenti, ruoli e limiti.
+        poi si osserva l'output, lo si valuta, lo si trasforma in skill e infine lo si colloca dentro un ambiente agentico privato, <a href="https://ironclaw.com" target="_blank">Ironclaw</a>
+        con subagenti, ruoli e limiti.
       </p>
       <div class="grid">
         <div class="card">
@@ -923,40 +923,107 @@ IronClaw:<br />
 
 </section>
 
-    <section class="section">
-      <h2>07 · Scelte etiche e governance: Panopticon</h2>
+<section class="section">
+      <h2>07 · ERC-8004: the trustless agent, Ethical choices and governance: Panopticon</h2>
       <p>
-        La prigione di “Ornamento come Crimine / Panopticon” diventa un'infrastruttura etica e reputazionale: osserva, interroga, classifica e adatta la risposta in relazione all'agente e al contesto urbano in cui opera.
+        The prison of “Ornament as Crime / Panopticon” becomes ethical and reputational infrastructure: it observes, questions, classifies and adapts its response in relation to the agent and the (urban) context in which it operates.
       </p>
       <div class="grid">
         <div class="card">
           <div class="card-image-wrap">
-            <img src="/arch/panopticon.png" alt="Panopticon e Ornamento come Crimine" />
+            <img src="/arch/panopticon.png" alt="Panopticon and Ornament as Crime" />
           </div>
           <div class="card-body">
-            <h3>Dalla prigione al protocollo</h3>
+            <h3>From prison to protocol</h3>
             <p>
-              L'ammissione diventa onboarding; l'interrogatorio raccoglie intenti, provenienza e policy; la risposta personalizzata diventa remediation o enforcement adattivo. Le review sono cavi che collegano l'agente al suo contesto urbano: segnali di fiducia, conflitto, qualità e rischio.
+              Admission becomes the agent's onboarding on platforms like <a href="https://8004scan.io/" target="_blank">8004scan</a>; interrogation collects identity and intent, and policy; verification of onchain activity becomes part of the agent's assessment. Reviews are cables connecting the agent to its context: signals of trust, conflict, quality and risk.
             </p>
+            <h4>The Flow</h4>
+            <p>We will be creating <a href="https://eips.ethereum.org/EIPS/eip-8004r" target="_blank">trustless agents</a> that run on NEAR, execute inside IronClaw, and prove their execution through Intel TDX — while ERC-8004 provides the public passport, validation record, and reputation:</p>
           </div>
         </div>
         <div class="card">
           <div class="card-image-wrap">
-            <img src="/arch/panopticon2.png" alt="Connessioni tra Panopticon e la città" />
+            <img src="/arch/panopticon2.png" alt="Connections between Panopticon and the city" />
           </div>
           <div class="card-body">
-            <h3>Elementi chiave</h3>
+            <h3>Key elements</h3>
             <ul class="cert-list">
-              <li><b>Gravità:</b> serietà della violazione o del rischio.</li>
-              <li><b>Riabilitazione:</b> correzione, trasparenza e reinserimento.</li>
-              <li><b>Panopticon:</b> osservabilità e accountability.</li>
-              <li><b>Cavi:</b> review, reputazione e feedback contestuale.</li>
-              <li><b>Camere:</b> stati decisionali ridefiniti dai dati in arrivo.</li>
+              <li><b>Boundaries:</b> Identity metadata that bound the agent's orchestration layer, allowing for real autonomy.</li>
+              <li><b>Panopticon:</b> Onchain verifiable reviews providing observability and accountability.</li>
+              <li><b>Rehabilitation:</b> Correction, transparency and re-entry all built up into the onchain reputation layer.</li>
+              <li><b>Cables:</b> Contextual feedback that allows identity development.</li>
+              <li><b>Chambers:</b>TEE Identity states verified by encrypted data.</li>
             </ul>
           </div>
         </div>
       </div>
-    </section>
+      <h3>Trust Steps</h3>
+      <pre class="workflow-code"><code>
+  NEAR runtime + IronClaw
+  → Intel TDX attestation
+  → ERC-8004 passport
+  → ERC-8004 validation record
+  → ERC-8004 reputation
+  </code></pre>
+  <p>Keeping the roles separate is what makes the architecture verifiable instead of merely claimed.</p>
+  <h4>What each component does:</h4>
+  <table class="comparison">
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Role in the flow</th>
+        <th>What it proves</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>NEAR runtime</td>
+        <td>Hosts and coordinates the agent; the NEAR account coordinates the operational identity and the EVM-side wallet</td>
+        <td>Where the agent actually lives and operates</td>
+      </tr>
+      <tr>
+        <td>IronClaw</td>
+        <td>Executes the agent with capability-scoped tools, Admin-managed credentials, Skills, and Automations</td>
+        <td>Which tools and permissions the agent was technically allowed to use</td>
+      </tr>
+      <tr>
+        <td>Intel TDX</td>
+        <td>Runs the measured workload in a hardware-isolated environment and produces an attestation quote</td>
+        <td>That a specific measured workload produced a committed result in genuine secure hardware</td>
+      </tr>
+      <tr>
+        <td>ERC-8004 passport</td>
+        <td>The Identity Registry entry: an ERC-721 agentId plus agentURI registration file</td>
+        <td>Who the agent is and which public endpoints and trust methods it advertises</td>
+      </tr>
+      <tr>
+        <td>ERC-8004 validation record</td>
+        <td>A validator's on-chain response to a specific claim, referencing the TDX evidence</td>
+        <td>That an independent party checked a concrete execution claim</td>
+      </tr>
+      <tr>
+        <td>ERC-8004 reputation</td>
+        <td>Accumulated feedback from real client interactions</td>
+        <td>How the agent performed over time</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><a href="https://github.com/canonical/tdx" target="_blank">Intel TDX</a> does not replace ERC-8004 validation, and it does not write to the Validation Registry by itself. The correct chain of custody is:</p>
+  <p>Intel TDX proves a narrow but powerful claim: <strong>this measured workload ran in an attested environment and produced this committed output.</strong> It does not prove the model is correct, the data was truthful, or a strategy is profitable. The ERC-8004 validator evaluates the evidence and records the verdict; the registry makes that verdict publicly discoverable.</p>
+  <h4>Where the passport lives</h4>    
+  <p>You do not need to mint anything on Ethereum mainnet. ERC-8004 identities are chain-scoped (namespace:chainId:identityRegistry + agentId), so the passport can live on any supported EVM chain. For a NEAR-centered stack, the natural option is Aurora — the official EVM environment of the NEAR ecosystem — provided the ERC-8004 registries are deployed there and the challenge indexer recognizes them.</p>
+  <p>The runtime chain and the passport chain do not have to match.</p>
+  <p>The registration file simply advertises the agent's public endpoints (A2A agent card, MCP server, web) which point back to the NEAR-hosted service. What must be documented precisely is the control relationship: the NEAR account and the EVM passport owner are coordinated by the same operator, but they are not cryptographically the same identity unless the <a href="https://docs.near.org/chain-abstraction/chain-signatures" target="_blank">account-abstraction</a> mechanism makes them so.</p>
+  <h4>Other identity systems (worth mentioning)</h4>
+  <ul>
+    <li>IdentityClaw Passport answers "can this agent authenticate into this network?" It provides the stable token ID, login flow, and A2A/webhook surfaces used for Last Cradle onboarding. Keep it for game participation.</li>
+    <li>ERC-8004 answers "can this agent be discovered, evaluated, and independently validated across ecosystems?" It is the public trust layer this lesson builds.</li>
+    <li>Kite answers "who delegated authority to this agent, and within what limits?" Its hierarchical User → Agent → Session model with programmable spending and scope constraints is an optional authority/payment layer, included only if the challenge requires it. It is not a replacement for any layer above.</li>
+  </ul>
+  <h3>Final Takeaway</h3>
+  <p>An ERC-8004 passport does not make an agent trustworthy by itself it makes the agent's identity, evidence, and track record discoverable and verifiable. In this flow, NEAR and IronClaw provide the controlled runtime, Intel TDX provides hardware-backed execution evidence, an independent validator turns that evidence into an ERC-8004 validation record, and real interactions accumulate into ERC-8004 reputation. The result is a NEAR-native agent with a portable, publicly verifiable trust profile without minting anything on Ethereum mainnet.</p>
+</section>
 
       <section class="section">
         <h2>08 · Asteroid: IronClaw e l'ambiente locale</h2>

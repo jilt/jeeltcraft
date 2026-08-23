@@ -1083,7 +1083,7 @@ IronClaw:<br />
           </div>
         </div>
         <div class="card">
-        
+          <div class="card-image-wrap"><img src="/arch/astero.png" alt="Project Asteroid"></div>
           <div class="card-body">
             <h3>Collision and resistance</h3>
             <ul class="cert-list">

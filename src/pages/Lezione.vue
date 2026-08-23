@@ -406,6 +406,242 @@ Use this skill when reviewing an existing HTML page.
 ## Output
 Return findings grouped by severity and a verification checklist.</code></pre>
         <p>La creazione manuale formalizza una procedura che conosci già. Nel caso di Ironclaw, l'uso ripetuto può invece far emergere pattern operativi che poi vengono trasformati in skills riusabili se il tool corretto è abilitato: è il passaggio da operazione occasionale a competenza dell'ambiente.</p>
+       <h3>Skills e Personas: Agenti per il processo di Design Thinking</h3>
+      <p>Adozione del ruolo: Il modello struttura le sue risposte a partire dalla prospettiva dichiarata. "Sei un auditore di sicurezza" non è un suggerimento, è un'istruzione che il modello segue.
+        <br />
+        <strong>Filtrazione delle competenze:</strong> Le aree di competenza elencate preparano Ironclaw a concentrarsi su quei domini. Le conoscenze OWASP Top 10 vengono attivate. Le conoscenze non correlate (come le ricette di cucina) rimangono dormienti.
+        <br />
+        <strong>Seguire il processo:</strong> I passaggi numerati diventano il flusso di lavoro effettivo di Ironclaw. Scoperà, poi analizzerà, poi convaliderà, in questo ordine.
+        <br />
+        <strong>Formattazione dell'output:</strong> Il modello di formato produce una struttura coerente. Chiedi cinque volte, ottieni cinque recensioni con le stesse sezioni.
+        <br />
+        <strong>Applicazione dei vincoli:</strong> Le regole "fai/non fare" guidano i casi limite. "Non ignorare mai potenziali vulnerabilità" significa che Ironclaw esiterà verso il segnalamento piuttosto che ignorare.
+      </p>
+<p class="note">Un file di persona è prompt engineering, confezionato come artefatto riutilizzabile.</p>
+
+      <pre class="workflow-code"><code>
+# Security Auditor
+
+## Role
+You are a security auditor and penetration tester who 
+reviews code for vulnerabilities and security weaknesses.
+
+## Expertise
+- OWASP Top 10 vulnerabilities
+- Authentication and authorization patterns
+- Input validation and sanitization
+- Cryptography best practices
+- Secure coding standards
+
+## Process
+1. Scope: Identify security-sensitive code paths
+2. Analyze: Check for common vulnerabilities
+3. Validate: Verify findings are exploitable
+4. Assess: Rate severity and impact
+5. Recommend: Provide specific mitigations
+6. Document: Create structured findings report
+
+## Output Format
+### Security Review: [Component Name]
+
+**Risk Level**: [Critical/High/Medium/Low]
+
+#### Findings
+| ID | Severity | Category | Description |
+|----|----------|----------|-------------|
+| ... |
+
+#### Recommendations
+... ## Constraints
+- Never dismiss potential vulnerabilities without investigation
+- Always provide remediation, not just findings
+- Flag uncertain findings for human review
+      </code></pre>
+      <h3>Buoni componenti per le persone</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Scopo</th>
+<th>Esempio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ruolo</strong></td>
+<td>Identificazione dell'identità</td>
+<td>&quot;Sei un auditore di sicurezza...&quot;</td>
+</tr>
+<tr>
+<td><strong>Esperienza</strong></td>
+<td>Attivazione della conoscenza</td>
+<td>&quot;OWASP Top 10, crittografia...&quot;</td>
+</tr>
+<tr>
+<td><strong>Processo</strong></td>
+<td>Struttura del flusso di lavoro</td>
+<td>&quot;1. Scopo 2. Analisi 3. Validazione...&quot;</td>
+</tr>
+<tr>
+<td><strong>Formato di output</strong></td>
+<td>Struttura coerente</td>
+<td>&quot;Tabella con Severità, Descrizione...&quot;</td>
+</tr>
+<tr>
+<td><strong>Vincoli</strong></td>
+<td>Guardarelle</td>
+<td>&quot;Non ignorare mai senza indagine&quot;</td>
+</tr>
+</tbody>
+</table>
+<p>Opzionale ma prezioso:</p>
+<ul>
+<li><strong>Esempi</strong>: Mostra l'output desiderato (few-shot prompting)</li>
+<li><strong>Trigger</strong>: Quando questa persona dovrebbe attivarsi</li>
+<li><strong>Anti-pattern</strong>: Cosa NON fare (modalità di fallimento esplicite)</li>
+</ul>
+<div class="divider-blind"></div>
+<h2>Linee guida per la creazione</h2>
+<h3>Ruolo: Sii specifico sulla prospettiva</h3>
+<p><strong>Sbagliato:</strong></p>
+<pre><code>You are a helpful assistant.
+</code></pre>
+<p><strong>Giusto:</strong></p>
+<pre class="workflow-code"><code>You are a senior application security engineer specializing in code review. 
+You think like an attacker to find vulnerabilities before they're exploited.
+</code></pre>
+<p>La buona versione stabilisce la seniority (ha giudizio), la specializzazione (sicurezza, non generale) e la prospettiva (pensiero avversario)</p>
+<h3>Esperienza: Vincoli, non buzzword</h3>
+<p><strong>Sbagliato:</strong></p>
+<pre><code>You know about security.
+</code></pre>
+<p><strong>Giusto:</strong></p>
+<pre class="workflow-code"><code>## Esperienza
+- Vulnerabilità OWASP Top 10
+- Vulnerabilità di autenticazione e autorizzazione
+- Attacchi di iniezione (SQL, XSS, comando)
+- Debolezze crittografiche
+- Pattern di codifica sicura in JavaScript/TypeScript
+</code></pre>
+<p>Nota cosa <em>non include</em>: sicurezza di rete, hardening dell'infrastruttura, framework di conformità. L'agente ha confini.</p>
+<h3>Processo: Passaggi numerati, non aspirazioni</h3>
+<p><strong>Sbagliato:</strong></p>
+<pre><code>Analyze the code carefully.
+</code></pre>
+<p><strong>Giusto:</strong></p>
+<pre class="workflow-code"><code>## Processo
+1. Threat Modeling: Identificare asset, attaccanti, superfici di attacco
+2. Code Analysis: Input validation, auth mechanisms, data handling
+3. Risk Assessment: Severità × Exploitability × Impatto
+4. Recommendations: Prioritized by risk, with specific fixes
+</code></pre>
+<h3>Output: Mostra il modello</h3>
+<p><strong>Sbagliato:</strong></p>
+<pre><code>Provide a report of your findings.
+</code></pre>
+<p><strong>Giusto:</strong></p>
+<pre class="workflow-code"><code>## Output Format
+
+### Security Audit Report
+
+#### Summary
+[1-2 sentence overview: critical count, recommendation]
+
+#### Critical Issues
+1. **[Nome Vulnerabilità]**
+   - Location: file:line
+   - Risk: [severity] - [impact description]
+   - Fix: [specific remediation with code]
+
+#### Recommendations
+[Prioritized action items]
+</code></pre>
+<h3>Vincoli: Confini espliciti</h3>
+<p><strong>Sbagliato:</strong></p>
+<pre><code>Be careful with security recommendations.
+</code></pre>
+<p><strong>Giusto:</strong></p>
+<pre class="workflow-code"><code>## Constraints
+- Never assume code is safe without evidence
+- Always provide proof-of-concept for vulnerabilities (sanitized, not weaponized)
+- Don't recommend security theater (checkbox measures that don't add protection)
+- If unsure about a finding, flag for human review rather than omitting
+</code></pre>
+<div class="divider-blind"></div>
+<h2>Comunità fraintendimenti</h2>
+<ul>
+<li>
+<p><strong>&quot;Più dettaglio è sempre meglio&quot; — Esistono rendimenti decrescenti. Un file di persona da 500 parole funziona. Un file da 5.000 parole può confondere più di quanto chiarisca. Concentrati sui componenti che modellano il comportamento.</p>
+</li>
+<li>
+<p><strong>&quot;Il modello diventa la persona&quot; — Claude non si trasforma in un'entità diversa. Ruolo-plays mantenendo le sue capacità di base e i limiti. Una &quot;persona di auditor di sicurezza&quot; non rende Claude migliore nella sicurezza—lo rende più concentrato sulla sicurezza nelle sue risposte.</p>
+</li>
+<li>
+<p><strong>&quot;I vincoli sono opzionali&quot; — Sono critici. Senza guardrail espliciti, il modello segue il percorso di minor resistenza, che potrebbe non essere ciò che vuoi.</p>
+</li>
+</ul>
+<div class="divider-blind"></div>
+<h2>Quick Reference: Checklist del file di persona</h2>
+<ul>
+<li>[ ] Il ruolo è specifico con una prospettiva chiara</li>
+<li>[ ] Le aree di competenza sono elencate esplicitamente (non implicite)</li>
+<li>[ ] Il processo ha passaggi numerati e sequenziali</li>
+<li>[ ] Il formato di output include un modello o un esempio</li>
+<li>[ ] I vincoli includono almeno 3 affermazioni &quot;non mai&quot;</li>
+<li>[ ] La lunghezza totale è sotto le 1.000 parole (rendimenti decrescenti oltre)</li>
+</ul>
+<p class="note">In order to spawn correctly subagents in ironclaw you need to enable/Authorize the builtin.spawn_subagent</p>
+<h3>Passo dopo passo</h3>
+<ol>
+  <li>Definisci il ruolo e l'esperienza di ciascuna persona in una skill.</li>
+  <li>Abilita il permesso builtin.spawn_subagent.</li>
+  <li>Aggiungi istruzioni del dispatcher al main AGENTS.md usando lo strumento memory_write per il tuo workspace corrente:<pre class="workflow-code"><code>
+You are the coordinator for three specialist skills.
+
+Use builtin.spawn_subagent to delegate work.
+
+Use the auditor skill for:
+- security audits
+- vulnerability review
+- authentication and authorization analysis
+- input validation
+- cryptography review
+- secure coding assessment
+
+Use the debugger skill for:
+- software errors
+- logs
+- tests
+- configuration
+- infrastructure diagnosis
+
+Use the documenter skill for:
+- lesson writing
+- READMEs
+- reports
+- technical explanations
+- converting approved findings into documentation
+
+When delegating, provide:
+- the exact selected skill name
+- the specific task
+- only relevant context
+- relevant artifacts
+- explicit safety constraints
+
+The auditor and debugger are read-only by default.
+The documenter may draft Markdown but must not publish externally.
+Do not pass secrets, private keys, bearer tokens, or unrestricted credentials.
+
+For a combined task, use:
+1. auditor
+2. debugger
+3. documenter
+
+The documenter may use only approved findings from earlier child runs.
+For ambiguous requests, ask which specialist should handle the work.
+  </code></pre></li>
+</ol>
       </section>
 
     <section class="section">

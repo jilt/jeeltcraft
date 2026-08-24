@@ -1130,7 +1130,11 @@ IronClaw:<br />
 <br />
   Usa la versione OpenCode per imparare l'orchestrazione multi-agente e i passaggi strutturati. Usa la versione IronClaw quando il runtime dovrebbe gestire l'iniezione delle credenziali, i confini delle capability, i permessi e l'esecuzione pianificata.
 </p>
+<div class="tag-row">
+  <a href="/arch/meeting-telegram-opencode.zip" class="btn tag" target="_blank">OpenCode workflow</a>
 
+  <a href="/arch/meeting-telegram-ironclaw.zip" class="btn tag" target="_blank">IronClaw workflow</a>
+</div>
 </section>
 
 <section class="section">
@@ -1168,7 +1172,7 @@ IronClaw:<br />
       </div>
     </div>
   </div>
-  <h3>Passi di fiducia</h3>
+  <h3>Costruire la fiducia</h3>
   <pre class="workflow-code"><code>
   Runtime NEAR + IronClaw
   → Attestazione Intel TDX
@@ -1176,7 +1180,7 @@ IronClaw:<br />
   → Record di validazione ERC-8004
   → Reputazione ERC-8004
   </code></pre>
-  Mantenere separate le funzioni è ciò che rende l'architettura verificabile invece che semplicemente dichiarata.
+  Mantenere separate le funzioni è ciò che rende l'architettura verificabile, non solo dichiarata.
   <h4>Cosa fa ogni componente:</h4>
   <table class="comparison">
     <thead>

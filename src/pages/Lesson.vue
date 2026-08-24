@@ -1171,7 +1171,11 @@ IronClaw:<br />
 <br />
   Use the OpenCode version to learn multi-agent orchestration and structured hand-offs. Use the IronClaw version when the runtime should own credential injection, capability boundaries, permissions, and scheduled execution.
 </p>
+<div class="tag-row">
+  <a href="/arch/meeting-telegram-opencode.zip" class="btn tag" target="_blank">OpenCode workflow</a>
 
+  <a href="/arch/meeting-telegram-ironclaw.zip" class="btn tag" target="_blank">IronClaw workflow</a>
+</div>
 </section>
 
     <section class="section">

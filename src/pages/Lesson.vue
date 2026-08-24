@@ -1,7 +1,7 @@
 <template>
   <main class="page">
     <div class="page-hero">
-      <h1>Psychogeography of Futuristic Architectures for Understanding <em>Generative AI</em></h1>
+      <h1>Psychogeography of Futuristic Architectures of <em>Generative AI</em></h1>
       <p>
         A dérive through post-singularity projects for designing prompts,
         agents, skills and workflows in the present.
@@ -633,7 +633,7 @@ You think like an attacker to find vulnerabilities before they're exploited.
 <li>[ ] Constraints include at least 3 &quot;never&quot; statements</li>
 <li>[ ] Total length under 1,000 words (diminishing returns beyond)</li>
 </ul>
-<p class="note">In order to spawn correctly subagents in ironclaw you need to enable/Authorize the builtin.spawn_subagent</p>
+<p class="note">In order to spawn correctly subagents in ironclaw you need to enable/Authorize the builtin.spawn_subagent tool</p>
 <h3>Step by Step</h3>
 <ol>
   <li>Define the role and expertise of each persona in a skill.</li>
@@ -693,7 +693,8 @@ For ambiguous requests, ask which specialist should handle the work.
         A skill becomes more powerful when assigned to a role inside a workflow. The repository
         <a href="https://github.com/msitarzewski/agency-agents" target="_blank" rel="noreferrer">Agency Agents</a>
         is a useful example of specialized personas for coding environments; a complete workflow still needs orchestration, state, verification and a human gate.
-        A multi-agent workflow divides a larger task into focused roles. Each role has a narrow responsibility, a limited context, and—ideally—a limited tool set. A coordinator passes structured results between roles and decides whether the workflow can proceed. The purpose is not to use many agents simply because the framework supports them. The purpose is to create useful boundaries:  
+        A multi-agent workflow divides a larger task into focused roles. Each role has a narrow responsibility, a limited context, and ideallya limited tool set. 
+        A coordinator passes structured results between roles and decides whether the workflow can proceed. The purpose is not to use many agents simply because the framework supports them but to create useful boundaries:  
       </p>
       <ul>
         <li>Smaller prompts are easier to test.</li>
@@ -911,7 +912,7 @@ For the same Calendar-to-Telegram task, IronClaw should normally use:</p>
 </code></pre>
 <h4>Approved Message</h4>
       <pre class="workflow-code"><code>
-        {
+{
   "status": "APPROVED",
   "idempotency_key": "sha256(calendar_id|event_id|updated|CREATED)",
   "notification_type": "CREATED",
@@ -999,7 +1000,7 @@ meeting-telegram-opencode/
       </code></pre>
       <p>Replace the placeholder model identifiers and tool names with the syntax supported by the installed OpenCode version. This is an architecture example, not a claim that every key is accepted unchanged by every release.</p>
       <h4>Agent Prompts</h4>
-      <code>calendar fetcher.md</code>
+      <code>calendar_fetcher.md</code>
       <pre class="workflow-code"><code>
         You retrieve and normalize Google Calendar events.
 
@@ -1011,7 +1012,7 @@ Rules:
 - Do not call Telegram.
 - Never output credentials.
 </code></pre>
-      <code>event formatter.md</code>
+      <code>event_formatter.md</code>
       <pre class="workflow-code"><code>
         You create a minimal display payload.
 
@@ -1025,7 +1026,7 @@ Exclude descriptions, attendees, attachments, organizers, and conference URLs.
 Never invent missing values. Return structured output.
 Never output credentials.
       </code></pre>
-      <code>policy validator.md</code>
+      <code>policy_validator.md</code>
       <pre class="workflow-code"><code>
         You are a policy gate, not a publisher.
 
@@ -1040,7 +1041,7 @@ Approve only when:
 Return APPROVED or REJECTED JSON. Never call Telegram.
 Never output credentials.
       </code></pre>
-      <code>telegram publisher.md</code>
+      <code>telegram_publisher.md</code>
       <pre class="workflow-code"><code>
         You deliver an already-approved message.
 
@@ -1068,37 +1069,20 @@ Never output credentials.
     </section>
     <section class="section">
       <h2>06.3 · Ironclaw Workflow: preparing a meeting on Telegram</h2>
-      <p class="note">
-        For IronClaw 1.2.0, do not copy the OpenCode five-agent implementation literally. Install and configure the native capabilities, then create one scheduled Automation.
-      </p>
-      <h3>Install Extensions</h3>
-      <pre class="workflow-code"><code>
-        Extensions → Registry
-      </code></pre>
+
+      <p>Install Extensions in <code>Extensions → Registry</code></p>
       <ul>
         <li>Calendar extension.</li>
         <li>Telegram extension.</li>
       </ul>
-      <h3>Configure Credentials</h3>
-      <pre class="workflow-code"><code>
-        Admin → Configuration
-      </code></pre>
+      <p>Configure Credentials in <code>Admin → Configuration</code></p>
       <p>Configure the Google OAuth client values through the Google Calendar configuration. Configure the Telegram bot deployment through the Telegram configuration fields.<br />Keep tokens out of Skills, prompts, Markdown, logs, and model context.</p>
-      <h3>Configure Permissions</h3>
-      <pre class="workflow-code"><code>
-        Settings → Tools
-      </code></pre>
+      <p>Configure Permissions in <code>Settings → Tools</code></p>
       <p>Use conservative global and per-tool settings. Give Calendar read-only access and Telegram send access only to the configured channel/destination. Do not grant the orchestrator arbitrary network access or arbitrary recipient selection.</p>
-      <h3>Create Automation</h3>
-      <pre class="workflow-code"><code>
-        Automations → New Automation
-      </code></pre>
+      <p>Create Automation in <code>Automations → New Automation</code></p>
       <p>Configuration:</p>
       <pre class="workflow-code"><code>
         Name: Prepare opted-in Calendar meeting for Telegram
-      </code></pre>
-      <p>Configuration:</p>
-      <pre class="workflow-code"><code>
         Trigger: every 5–10 minutes
         Mode: DRY_RUN initially
         Calendar: allowlisted announcement calendar

@@ -1,9 +1,9 @@
 <template>
   <main class="page">
     <div class="page-hero">
-      <h1>Psicogeografia di architetture futuristiche per capire la <em>Generative AI</em></h1>
+      <h1>Architetture futuristiche per l'<em>IA generativa</em></h1>
       <p>
-        Una dérive su progetti post-singolarità per progettare prompt, agenti, skills e workflow nel presente.
+        Una dérive su progetti post-singolarità per progettare prompt, agenti, skill e workflow nel presente.
       </p>
       <div class="tag-row">
         <span class="tag">Prompt engineering</span>
@@ -590,8 +590,8 @@ You think like an attacker to find vulnerabilities before they're exploited.
 <li>[ ] I vincoli includono almeno 3 affermazioni &quot;non mai&quot;</li>
 <li>[ ] La lunghezza totale è sotto le 1.000 parole (rendimenti decrescenti oltre)</li>
 </ul>
-<p class="note">In order to spawn correctly subagents in ironclaw you need to enable/Authorize the builtin.spawn_subagent</p>
-<h3>Passo dopo passo</h3>
+<p class="note">Per far partire i diversi subagenti correttamente in Ironclaw è necessario abilitare/autorizzare lo strumento builtin.spawn_subagent</p>
+<h3>Un Passo per Volta</h3>
 <ol>
   <li>Definisci il ruolo e l'esperienza di ciascuna persona in una skill.</li>
   <li>Abilita il permesso builtin.spawn_subagent.</li>
@@ -869,7 +869,7 @@ Per lo stesso compito da Calendario a Telegram, IronClaw dovrebbe normalmente us
 </code></pre>
 <h4>Messaggio Approvato</h4>
       <pre class="workflow-code"><code>
-        {
+{
   "status": "APPROVED",
   "idempotency_key": "sha256(calendar_id|event_id|updated|CREATED)",
   "notification_type": "CREATED",
@@ -957,7 +957,7 @@ meeting-telegram-opencode/
       </code></pre>
       <p>Sostituisci gli identificatori del modello e i nomi degli strumenti segnaposto con la sintassi supportata dalla versione di OpenCode installata. Questo è un esempio di architettura, non una garanzia che ogni chiave sia accettata invariata da ogni release.</p>
       <h4>Prompt degli Agenti</h4>
-      <code>calendar fetcher.md</code>
+      <code>calendar_fetcher.md</code>
       <pre class="workflow-code"><code>
         Recuperi e normalizzi gli eventi di Google Calendar.
 
@@ -969,7 +969,7 @@ Regole:
 - Non chiamare Telegram.
 - Non restituire mai credenziali.
 </code></pre>
-      <code>event formatter.md</code>
+      <code>event_formatter.md</code>
       <pre class="workflow-code"><code>
         Crei un payload di visualizzazione minimo.
 
@@ -983,7 +983,7 @@ Escludi descrizioni, partecipanti, allegati, organizzatori e URL di conferenza.
 Non inventare mai valori mancanti. Restituisci un output strutturato.
 Non restituire mai credenziali.
       </code></pre>
-      <code>policy validator.md</code>
+      <code>policy_validator.md</code>
       <pre class="workflow-code"><code>
         Sei un gate di policy, non un publisher.
 
@@ -998,7 +998,7 @@ Approva solo quando:
 Restituisci JSON APPROVATO o RIFIUTATO. Non chiamare mai Telegram.
 Non restituire mai credenziali.
       </code></pre>
-      <code>telegram publisher.md</code>
+      <code>telegram_publisher.md</code>
       <pre class="workflow-code"><code>
         Consegni un messaggio già approvato.
 
@@ -1029,37 +1029,22 @@ Non restituire mai credenziali.
       <p class="note">
         Per IronClaw 1.2.0, non copiare letteralmente l'implementazione a cinque agenti di OpenCode. Installa e configura le capability native, quindi crea un'unica Automazione pianificata.
       </p>
-      <h3>Installa Estensioni</h3>
-      <pre class="workflow-code"><code>
-        Extensions → Registry
-      </code></pre>
+      <p>Installa Estensioni <code>Extensions → Registry</code> </p>
       <ul>
         <li>Estensione Calendar.</li>
         <li>Estensione Telegram.</li>
       </ul>
-      <h3>Configura Credenziali</h3>
-      <pre class="workflow-code"><code>
-        Admin → Configuration
-      </code></pre>
+      <p>Configura le Credenziali <code>Admin → Configuration</code></p>
       <p>Configura i valori del client OAuth di Google tramite la configurazione di Google Calendar. Configura il deployment del bot Telegram tramite i campi di configurazione di Telegram.<br />Tieni i token fuori da Skill, prompt, Markdown, log e contesto del modello.</p>
-      <h3>Configura Permessi</h3>
-      <pre class="workflow-code"><code>
-        Settings → Tools
-      </code></pre>
+      <p>Configura Permessi <code>Settings → Tools</code></p>
       <p>Usa impostazioni globali e per strumento conservative. Dai a Calendar accesso in sola lettura e a Telegram accesso in invio solo al canale/destinazione configurato. Non concedere all'orchestratore accesso di rete arbitrario o selezione arbitraria del destinatario.</p>
-      <h3>Crea Automazione</h3>
-      <pre class="workflow-code"><code>
-        Automations → New Automation
-      </code></pre>
+      <p>Crea una nuova automazione <code>Automations → New Automation</code></p>
       <p>Configurazione:</p>
       <pre class="workflow-code"><code>
-        Nome: Prepara riunione Calendar con opt-in per Telegram
-      </code></pre>
-      <p>Configurazione:</p>
-      <pre class="workflow-code"><code>
+        Nome: Prepara riunione come da calendario su Telegram
         Trigger: ogni 5–10 minuti
         Modalità: DRY_RUN inizialmente
-        Calendario: calendario di annunci in allowlist
+        Calendario: calendario eventi X in allowlist
         Destinazione Telegram: destinazione fissa configurata
       </code></pre>
       <p>Passaggi:</p>
@@ -1108,23 +1093,23 @@ Non restituire mai credenziali.
 </tr>
 </tbody>
 </table>
-<p>Una Skill IronClaw può documentare il workflow o fornire istruzioni, ma l'aggiunta di una Skill non installa un client API. Allo stesso modo, l'installazione di un'estensione non crea automaticamente l'automazione completa; l'Automazione deve ancora essere configurata.</p>
+<p>Una Skill IronClaw può documentare il workflow o fornire istruzioni, ma l'aggiunta di una Skill non fa funzionare la API, anche l'installazione di un'estensione non crea l'automazione completa, deve essere configurata.</p>
 <h4>Fase di Ragionamento Opzionale</h4>
-<p>Se il workflow della riunione in seguito necessita di un riassunto generato da AI, aggiungi una fase di ragionamento limitata tra il recupero del Calendario e la validazione deterministica:</p>
+<p>Se il workflow della riunione necessita di un riassunto generato da AI, aggiungi una fase di ragionamento limitata tra il recupero del Calendario e la validazione deterministica:</p>
 <pre class="workflow-code"><code>
   Estensione Calendar
-  → subagente riassuntore: solo bozza di riassunto
+  → subagente segretario: solo bozza di riassunto
   → validatore di policy: approva campi e lunghezza
   → formattatore
   → Estensione Telegram
 </code></pre>
-<p>Il riassuntore non deve ricevere credenziali di Telegram o autorità di consegna. Il suo output deve essere trattato come una proposta non attendibile finché la validazione deterministica non lo approva.</p>    
+<p>Il segretario non deve ricevere credenziali di Telegram o autorità di consegna. Il suo output deve essere trattato come una proposta non attendibile finché la validazione deterministica non lo approva.</p>    
 <h4>Checklist di Test</h4>
-<p>Test Dry Run da eseguire prima di abilitare la consegna:</p>
+<p>Cosa testare al primo lancio:</p>
 <ul>
   <li>La prima sincronizzazione di base non invia nulla.</li>
-  <li>Un evento confermato con opt-in produce un messaggio.</li>
-  <li>Un evento senza la proprietà di opt-in viene rifiutato.</li>
+  <li>Un evento confermato produce un messaggio.</li>
+  <li>Un evento senza la conferma viene rifiutato.</li>
   <li>Un evento annullato viene rifiutato.</li>
   <li>Un evento modificato produce una nuova versione.</li>
   <li>La riesecuzione dello stesso evento non duplica la consegna.</li>

@@ -1,7 +1,7 @@
 <template>
   <main class="page">
     <div class="page-hero">
-      <h1>Psychogeography of Futuristic Architectures of <em>Generative AI</em></h1>
+      <h1>Futuristic Architectures of <em>Generative AI</em></h1>
       <p>
         A dérive through post-singularity projects for designing prompts,
         agents, skills and workflows in the present.

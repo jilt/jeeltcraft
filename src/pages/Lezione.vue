@@ -1035,9 +1035,9 @@ Non restituire mai credenziali.
         <li>Estensione Telegram.</li>
       </ul>
       <p>Configura le Credenziali <code>Admin → Configuration</code></p>
-      <p>Configura i valori del client OAuth di Google tramite la configurazione di Google Calendar. Configura il deployment del bot Telegram tramite i campi di configurazione di Telegram.<br />Tieni i token fuori da Skill, prompt, Markdown, log e contesto del modello.</p>
+      <p>Configura i valori del client OAuth di Google tramite la configurazione di Google Calendar. Configura il deployment del bot Telegram tramite i campi di configurazione di Telegram.<br /><strong>Tieni i token fuori da Skill, prompt, Markdown, log e contesto del modello.</strong></p>
       <p>Configura Permessi <code>Settings → Tools</code></p>
-      <p>Usa impostazioni globali e per strumento conservative. Dai a Calendar accesso in sola lettura e a Telegram accesso in invio solo al canale/destinazione configurato. Non concedere all'orchestratore accesso di rete arbitrario o selezione arbitraria del destinatario.</p>
+      <p>Usa impostazioni conservative globali e per strumento. Dai a Calendar accesso in sola lettura e a Telegram accesso in invio solo al canale/destinazione configurato. Non concedere all'orchestratore accesso di rete arbitrario o selezione arbitraria del destinatario.</p>
       <p>Crea una nuova automazione <code>Automations → New Automation</code></p>
       <p>Configurazione:</p>
       <pre class="workflow-code"><code>

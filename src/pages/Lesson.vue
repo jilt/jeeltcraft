@@ -1076,7 +1076,7 @@ Never output credentials.
         <li>Telegram extension.</li>
       </ul>
       <p>Configure Credentials in <code>Admin → Configuration</code></p>
-      <p>Configure the Google OAuth client values through the Google Calendar configuration. Configure the Telegram bot deployment through the Telegram configuration fields.<br />Keep tokens out of Skills, prompts, Markdown, logs, and model context.</p>
+      <p>Configure the Google OAuth client values through the Google Calendar configuration. Configure the Telegram bot deployment through the Telegram configuration fields.<br /><strong>Keep tokens out of Skills, prompts, Markdown, logs, and model context.</strong></p>
       <p>Configure Permissions in <code>Settings → Tools</code></p>
       <p>Use conservative global and per-tool settings. Give Calendar read-only access and Telegram send access only to the configured channel/destination. Do not grant the orchestrator arbitrary network access or arbitrary recipient selection.</p>
       <p>Create Automation in <code>Automations → New Automation</code></p>

@@ -84,7 +84,7 @@
     <div class="divider"></div>
 
     <section class="section">
-      <h2>01 · Fondazioni: Skizoid come Machine Learning</h2>
+      <h2>01 · Le basi: Skizoid come Machine Learning</h2>
       <p>
         L'approccio algoritmico ai sistemi architettonici è il punto d'ingresso per spiegare il Machine Learning:
         dati, algoritmo, modello e training generano una forma che non è fissata una volta per tutte.
@@ -98,7 +98,7 @@
             <h3>Dal progetto al concetto</h3>
             <p>
               In Skizoid la forma è conseguenza di parametri e vincoli. Analogamente,
-              un modello ML apprende pattern dai dati e produce output che dipendono dal contesto e dall'obiettivo.
+              un modello LLM apprende pattern dai dati e produce output che dipendono dal contesto e dall'obiettivo.
             </p>
           </div>
         </div>
@@ -109,7 +109,7 @@
               <li><b>Algoritmo:</b> la grammatica che legge l'input.</li>
               <li><b>Dati:</b> il territorio da cui emergono i pattern.</li>
               <li><b>Modello:</b> l'architettura interna che conserva ciò che è appreso.</li>
-              <li><b>Training:</b> la correzione progressiva dei pesi per ridurre l'errore.</li>
+              <li><b>Training:</b> la correzione semantica (dei pesi semantici) progressiva per ridurre l'errore.</li>
             </ul>
           </div>
         </div>
@@ -117,9 +117,9 @@
     </section>
 
     <section class="section">
-      <h2>01.1 · Generative AI: forme emergenti</h2>
+      <h2>01.1 · AI Generativa: Forme emergenti</h2>
       <p>
-        La Generative AI non si limita a classificare: produce nuovi output a partire da regolarità apprese.
+        La Generative AI non si limita a classificare: produce nuovi output a partire da pattern appresi.
         Il sistema ricombina materia, contesto e vincoli per creare testo, immagini, codice o altre forme.
       </p>
       <div class="grid">
@@ -130,7 +130,7 @@
           <div class="card-body">
             <h3>Generare non significa copiare</h3>
             <p>
-              La macchina può costruire habitat, archivi, dispositivi ed esperienze. L'output è nuovo, ma non è privo di condizioni:
+              La macchina può costruire habitat, archivi, dispositivi ed esperienze. L'output è originale, ma fa uso dei voncoli:
               dipende da dati, modello, prompt e controlli.
             </p>
           </div>
@@ -150,23 +150,23 @@
     </section>
 
     <section class="section">
-      <h2>02 · Skizoid: il prompt come progetto</h2>
+      <h2>02 · Skizoid: prompt design</h2>
       <p>
-        Dentro Skizoid inseriamo le tecniche di prompting. Ogni stile è una diversa architettura del controllo:
-        cambia quanto contesto forniamo, quante alternative esploriamo e come colleghiamo un output al passaggio successivo.
+        La forma di Skizoid è la conseguenza di parametri e vincoli. Ogni stile è una diversa architettura per controllare l'output:
+        cambia a seconda del contesto, delle alternative fornite e come colleghiamo un output al passaggio successivo.
       </p>
       <div class="prompt-grid">
         <article class="card prompt-card">
           <div class="card-body">
             <h3>Zero-shot</h3>
-            <p>Il modello riceve il compito senza esempi.</p>
+            <p>Il modello riceve il prompt senza esempi.</p>
             <pre><code>Agisci come un web designer tecnico. Progetta l'outline di una pagina HTML in italiano dedicata alla mia app. Includi hero, tre sezioni, una tabella e una call to action. Non inventare funzionalità non verificate.</code></pre>
           </div>
         </article>
         <article class="card prompt-card">
           <div class="card-body">
             <h3>Few-shot · creare una pagina web</h3>
-            <p>Gli esempi precedenti definiscono stile, struttura e formato.</p>
+            <p>Forniamo degli esempi definiscono stile, struttura e formato.</p>
             <pre><code>ESEMPIO 1:
 Struttura: hero, tre card, call to action.
 Tono: tecnico, minimale, diretto.
@@ -181,7 +181,7 @@ Ora crea una pagina sulla mia app mantenendo la struttura degli esempi. Restitui
         <article class="card prompt-card">
           <div class="card-body">
             <h3>Chain of thought / pianificazione strutturata</h3>
-            <p>Chiediamo un piano verificabile, non necessariamente l'esposizione del ragionamento privato.</p>
+            <p>Chiediamo al modello un piano verificabile, non necessariamente l'esposizione del ragionamento che ci sta dietro.</p>
             <pre><code>Pianifica la creazione di una pagina web sulla mia app in fasi verificabili:
 1. contenuti necessari;
 2. struttura HTML;
@@ -216,7 +216,7 @@ Per ogni opzione indica vantaggi, rischi, contenuti mancanti e pubblico ideale. 
         <article class="card prompt-card">
           <div class="card-body">
             <h3>Prompt chaining</h3>
-            <p>L'output di un passaggio diventa input del successivo.</p>
+            <p>L'output di ogni passaggio diventa input del successivo.</p>
             <pre><code>Prompt 1: estrai i requisiti dalla richiesta.
 Prompt 2: trasforma i requisiti in un outline.
 Prompt 3: genera l'HTML dall'outline.
@@ -226,7 +226,7 @@ Prompt 5: correggi solo gli errori rilevati e restituisci il diff.</code></pre>
         </article>
       </div>
       <div class="note">
-        <b>Regola pratica:</b> un buon prompt specifica ruolo, obiettivo, contesto, scope, formato dell'output, vincoli, elementi da preservare, criteri di qualità, verifiche e condizioni di stop. Più il compito è autonomo o irreversibile, più questi limiti devono essere espliciti.
+        <b>Regola pratica:</b> un buon prompt specifica ruolo, obiettivo, contesto, scope, formato dell'output, vincoli, elementi da preservare, criteri di qualità, verifiche e condizioni di stop. Più il compito è autonomo o irreversibile, più questi <strong>limiti</strong> devono essere espliciti.
       </div>
     </section>
 
@@ -234,7 +234,7 @@ Prompt 5: correggi solo gli errori rilevati e restituisci il diff.</code></pre>
       <h2>03 · Dump Vestige: il ciclo /goal</h2>
       <p>
         In Dump Vestige la forma emerge progressivamente. Per questo esistono i loop come /goal:
-        un obiettivo produce un artefatto, un giudice lo valuta e il sistema decide se continuare, correggere, aspettare o fermarsi.
+        un obiettivo produce un artefatto, un (agente) giudice lo valuta e il sistema decide se continuare, correggere, aspettare o fermarsi.
       </p>
       <div class="grid">
         <div class="card">
@@ -247,13 +247,13 @@ Prompt 5: correggi solo gli errori rilevati e restituisci il diff.</code></pre>
               Il primo output è materia provvisoria. Il ciclo la raffina finché non soddisfa un criterio verificabile.
             </p>
             <pre class="workflow-code"><code>/goal
-Refactor the HTML lesson.
+Rivisita la lezione HTML.
 
-outcome: replace the Pi workflow with Ironclaw
-verification: required sections and links exist
-constraints: preserve Italian and project references
-boundaries: edit only src/lezione.html
-stop when: credentials or external side effects are required</code></pre>
+risultato: sostituire il flusso di lavoro Pi con Ironclaw
+verifica: che ogni sezione e link esista
+vincoli: presenva la lingua italiana e le referenza al progetto.
+limiti: modifica solo src/lezione.html
+Fermati se: sono richieste credenziali o ci sono effetti esterni non richiesti.</code></pre>
           </div>
         </div>
         <div class="card">
@@ -263,13 +263,13 @@ stop when: credentials or external side effects are required</code></pre>
           <div class="card-body">
             <h3>Loop più articolati</h3>
             <p>
-              In strumenti agentici il loop può includere sottogoal, processi in background, test, review, attese e un budget di turni. <a href="/arch/goal.md" target="_blank" rel="noreferrer">Qui c'e' un esempio semplificato</a> che potete conservare al percorso <code>.opencode/commands/goal.md</code>,
+              In strumenti agentici (harness) il loop può includere sottogoal, processi in background, test, review, condizioni di attesa e budget di token per ogni turno. <a href="/arch/goal.md" target="_blank" rel="noreferrer">Qui c'e' un esempio semplificato</a> che potete conservare al percorso <code>.opencode/commands/goal.md</code>,
               Un esempio di prompt puo' essere:
               <code>/goal revisiona questo repository e restringi la logica del bot di liquidazione dei fondi</code>
             </p>
             <p>
-              Operazioni ripetute possono diventare skills: il sistema passa da “esegui questa operazione” a “riconosci e riusa questa procedura”. <a href="/arch/SKILL.md" target="_blank" rel="noreferrer">Questa SKILL</a> puo' essere usanta nell'interfaccia locale e online di Ironclaw come un /goal loop, è necessario evocarla in modo esplicito:
-              <code>/skill persistent-goal-loop porta la funzionalità X finchè il codice non passa il test Y</code>
+              Operazioni ripetute possono diventare skill: il sistema passa da “esegui questa operazione” a “riconosci e riusa questa procedura”. <a href="/arch/SKILL.md" target="_blank" rel="noreferrer">Questa SKILL</a> puo' essere usata nell'interfaccia locale e online di Ironclaw come un /goal loop, è necessario evocarla in modo esplicito:
+              <code>/skill persistent-goal-loop aggiungi la funzionalità X finchè il codice non passa il test Y</code>
             </p>
             <p>
               Il comando /goal adesso si trova ed è utilizzabile in quasi tutte le harness di uso comune, molti lo usano per loggare gli errori ed elaborare custom skills.
@@ -281,10 +281,10 @@ stop when: credentials or external side effects are required</code></pre>
     </section>
 
     <section class="section">
-      <h2>04 · The Queer Object: contesto, embeddings e attenzione</h2>
+      <h2>04 · The Queer Object: contesto, embedding e attenzione</h2>
       <p>
-        Il progetto chiede come lo stesso algoritmo interpreti contesti differenti. Un LLM non decide come un soggetto umano:
-        trasforma il testo, pesa le relazioni del contesto e predice una continuazione token dopo token.
+        Il progetto esplora come lo stesso algoritmo interpreta contesti differenti. Un LLM non decide come un soggetto umano:
+        trasforma il testo, pesa le relazioni del contesto e predice una continuazione semantica token dopo token.
       </p>
       <div class="grid">
         <div class="card">
@@ -301,7 +301,7 @@ stop when: credentials or external side effects are required</code></pre>
               <li><b>Tokenizzazione:</b> il testo viene suddiviso in unità.</li>
               <li><b>Embeddings:</b> le unità diventano coordinate semantiche.</li>
               <li><b>Self-attention:</b> il modello pesa quali elementi contano nel contesto.</li>
-              <li><b>Next-token prediction:</b> sceglie una continuazione probabile, non una decisione intenzionale.</li>
+              <li><b>Next-token prediction:</b> il modello sceglie una continuazione probabile, senza intenzionalità.</li>
             </ul>
           </div>
         </div>
@@ -312,10 +312,10 @@ stop when: credentials or external side effects are required</code></pre>
           <div class="card-body"> 
       <section class="section">
         <h3>Contesto: memoria, CLI e MCP</h3>
-        <p>Il contesto non è solo il prompt: è anche lo stato della sessione, la memoria, i file caricati, gli strumenti attivi e gli output precedenti.</p>
+        <p>Il contesto non è solo inserito nel prompt: è anche lo stato della sessione, la memoria, i file caricati, gli strumenti attivi e gli output precedenti.</p>
         <ul class="cert-list"><li><code>/clear</code> — svuota il contesto conversazionale corrente.</li><li><code>/reset</code> — riporta sessione o configurazione a uno stato iniziale, secondo il tool.</li><li><code>/compact</code> — comprime la cronologia mantenendo il contesto più rilevante.</li><li><code>/doctor</code> — esegue controlli diagnostici.</li><li><code>/mcp</code> — mostra o gestisce server MCP e strumenti disponibili.</li><li><code>/memory</code> — consulta o aggiorna la memoria persistente.</li><li><code>/rewind</code> — torna a uno stato precedente della sessione o del lavoro.</li></ul>
         <p class="note">Questi nomi non sono uno standard universale: Claude, OpenCode, Ironclaw e altri CLI possono implementare comandi diversi.</p>
-        <table class="comparison"><thead><tr><th>CLI</th><th>MCP</th></tr></thead><tbody><tr><td>L'agente esegue comandi locali o remoti come <code>pytest</code>, <code>cargo test</code> o <code>git</code>.</td><td>L'agente usa server che espongono strumenti e risorse con un'interfaccia standardizzata.</td></tr><tr><td>Ottimo per script, build, test e pipeline.</td><td>Ottimo per collegare database, browser, filesystem e servizi a più client.</td></tr><tr><td>Dipende da ambiente, permessi e output testuale.</td><td>Espone capability e schemi più strutturati.</td></tr></tbody></table>
+        <table class="comparison"><thead><tr><th>CLI</th><th>MCP</th></tr></thead><tbody><tr><td>Command Line Interface, un metodo basato sul testo per interagire con un software senza elementi visuali come menu e icone</td><td>un servizio che esponde strumenti, risorse dati e prompt ai modelli AI attraverso il Model Context Protocol</td></tr><tr><td>L'agente esegue comandi locali o remoti come <code>pytest</code>, <code>cargo test</code> o <code>git</code>.</td><td>L'agente usa server che espongono strumenti e risorse con un'interfaccia standardizzata.</td></tr><tr><td>Ottimo per script, build, test e pipeline.</td><td>Ottimo per collegare database, browser, filesystem e servizi a più client.</td></tr><tr><td>Dipende da ambiente, permessi e output testuale.</td><td>Espone capability e schemi più strutturati.</td></tr></tbody></table>
       </section>
           </div>
         </div>
@@ -323,10 +323,10 @@ stop when: credentials or external side effects are required</code></pre>
     </section>
 
     <section class="section">
-      <h2>05 · A.R.K.: skills e contesto operativo</h2>
+      <h2>05 · A.R.K.: skill e contesto operativo</h2>
       <p>
-        A.R.K. è una metafora per il ciclo completo della competenza agentica:
-        il Giardino mostra il contesto, la Curatela organizza istruzioni e dati, lo Strumento restituisce una procedura riusabile.
+        A.R.K. è una metafora per il ciclo completo delle competenze dell'agente:
+        il Giardino mostra il contesto, la Curatela organizza istruzioni e pattern di dati, gli strumenti restituiscono una procedura riutilizzabile.
       </p>
       <div class="grid">
         <div class="card">

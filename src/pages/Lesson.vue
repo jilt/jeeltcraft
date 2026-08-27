@@ -162,7 +162,7 @@
     </section>
 
     <section class="section">
-      <h2>02 · Skizoid: the prompt as a design</h2>
+      <h2>02 · Skizoid: prompt design</h2>
       <p>
         Inside Skizoid we place the prompting techniques. Each style is a different
         architecture of control: it changes how much context we provide, how many
@@ -170,7 +170,8 @@
       </p>
       <div class="prompt-grid">     
         <article class="card prompt-card">
-          <div class="card-body">        
+          <div class="card-body"> 
+        <h3>Zero-shot</h3>       
         <pre><code>Act as a technical web designer. Design the outline of an HTML page in English about my app. Include a hero, three sections, a table and a call to action.</code></pre>
           </div>
         </article>
@@ -352,6 +353,7 @@ stop when: credentials or external side effects are required</code></pre>
           <tr><th>CLI</th><th>MCP</th></tr>
         </thead>
         <tbody>
+          <tr><td>Command Line Interface, a text-based method of interacting with a software by typing commands rather than using visual elements like icons or menus</td><td>service that exposes tools, data resources, and prompts to AI models through the Model Context Protocol</td></tr>
           <tr><td>The agent runs local or remote commands such as <code>pytest</code>, <code>cargo test</code>, <code>git</code> or <code>solana</code>.</td><td>The agent uses servers that expose tools and resources through a standardized interface.</td></tr>
           <tr><td>Excellent for scripts, builds, tests and pipelines.</td><td>Excellent for connecting databases, browsers, filesystems and services to multiple clients.</td></tr>
           <tr><td>Depends on environment, permissions and textual output.</td><td>Exposes more structured capabilities and schemas.</td></tr>

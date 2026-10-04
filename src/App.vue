@@ -23,6 +23,7 @@
      <Web3Dev v-else-if="page === 'web3'" :key="'web3'" />
      <Lesson v-else-if="page === 'lesson'" :key="'lesson'" @navigate="navigateTo($event)" />
      <Lezione v-else-if="page === 'lezione'" :key="'lezione'" />
+     <EPrivacyDeck v-else-if="page === 'eprivacy'" :key="'eprivacy'" @navigate="navigateTo($event)" />
 
     <CreatorLinks />
   </div>
@@ -35,13 +36,14 @@ import AIDev from './pages/AIDev.vue'
 import Web3Dev from './pages/Web3Dev.vue'
 import Lesson from './pages/Lesson.vue'
 import Lezione from './pages/Lezione.vue'
+import EPrivacyDeck from './pages/EPrivacyDeck.vue'
 import CreatorLinks from './components/CreatorLinks.vue'
 
-type PageKey = 'home' | 'ai' | 'web3' | 'lesson' | 'lezione'
+type PageKey = 'home' | 'ai' | 'web3' | 'lesson' | 'lezione' | 'eprivacy'
 
 const page = ref<PageKey>('home')
 
-const validPages = new Set<PageKey>(['home', 'ai', 'web3', 'lesson', 'lezione'])
+const validPages = new Set<PageKey>(['home', 'ai', 'web3', 'lesson', 'lezione', 'eprivacy'])
 
 const navigateTo = (newPage: PageKey) => {
   if (validPages.has(newPage)) {

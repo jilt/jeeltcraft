@@ -1,0 +1,159 @@
+commit a141f1275d7d40ecd649ba68442bb033e31d8113
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Mon Oct 5 01:20:50 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Mon Oct 5 01:20:50 2026 +0200
+
+    slide e-privacy
+
+commit d6b6b5633b97f81601d14a9da8d9b87aa337254a
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Thu Aug 27 20:00:17 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Thu Aug 27 20:00:17 2026 +0200
+
+    went on with translation
+
+commit 2284613962cb781b617a0ac13bc6b9ac2f814feb
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Mon Aug 24 19:58:59 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Mon Aug 24 19:58:59 2026 +0200
+
+    Update Lesson.vue
+
+commit 475ca4a84c36dab1c11c651b325117caf9fde8bc
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Mon Aug 24 17:05:53 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Mon Aug 24 17:05:53 2026 +0200
+
+    typos
+
+commit a4be3c5b5b9bbb6b88872eb05edc252f751de1b0
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Mon Aug 24 16:57:09 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Mon Aug 24 16:57:09 2026 +0200
+
+    added tested workflows
+
+commit 09661c9dbfcd3b9293cb933b1e6eda2fd1aaa4dd
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Mon Aug 24 15:59:22 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Mon Aug 24 15:59:22 2026 +0200
+
+    typos and layout italian translation
+
+commit 9ed1fb39b543c54382e37b33d128a5f2b843a9fd
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Mon Aug 24 00:32:35 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Mon Aug 24 00:32:35 2026 +0200
+
+    Orrori
+
+commit 5018a705b4957af594eda902bf50620653390065
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Mon Aug 24 00:30:16 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Mon Aug 24 00:30:16 2026 +0200
+
+    italian translation
+
+commit f7ccd52dcdf6389c0987755843f3c37d0ef0b839
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Mon Aug 24 00:18:54 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Mon Aug 24 00:18:54 2026 +0200
+
+    redundance
+
+commit 579e74a1f421a25a9786dbd3174ffa09aaa0b818
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Sun Aug 23 23:58:46 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Sun Aug 23 23:58:46 2026 +0200
+
+    updated multiagent orchestration part
+
+commit e2b5032f36eaa4f1a79c9dd76c7ac6a01433fa4e
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Sun Aug 23 21:07:17 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Sun Aug 23 21:07:17 2026 +0200
+
+    details
+
+commit a70036c025418eef7b22c611acd839f6febd599e
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Sun Aug 23 20:38:00 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Sun Aug 23 20:38:00 2026 +0200
+
+    italian typos
+
+commit 4e97ca7b2ffc7adf599328ce58ef163b6c98fe50
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Sun Aug 23 19:20:31 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Sun Aug 23 19:20:31 2026 +0200
+
+    fixed asteroid picture
+
+commit cbbdaf0d7a85af8d64e6ca66895024b39647ea6f
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Sun Aug 23 19:18:43 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Sun Aug 23 19:18:43 2026 +0200
+
+    fixed last picture
+
+commit f25d915fc86cbe27e0f55f9652ec9065e0226fcc
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Sun Aug 23 19:15:52 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Sun Aug 23 19:15:52 2026 +0200
+
+    updated goals and skills and erc-8004
+
+commit 66df7dcaebe7d85753d3b91d6ab63823145b3984
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Wed Aug 19 00:14:33 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Wed Aug 19 00:14:33 2026 +0200
+
+    workflow paragraph updated
+
+commit 477837ebf96195020810cddb51a58cdcc2678a30
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Sun Aug 16 19:46:17 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Sun Aug 16 19:46:17 2026 +0200
+
+    minor changes
+
+commit 76cf5dff4a1bcef044ca2b920bf279bcc31e7153
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Sat Aug 15 10:47:19 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Sat Aug 15 10:47:19 2026 +0200
+
+    upgade workflows
+
+commit 4fb7f664bee60eced7f18643ecc9d111fed22718
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Fri Aug 14 18:59:56 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Fri Aug 14 18:59:56 2026 +0200
+
+    typos
+
+commit 2513913913983dec75ed09fba0c48860a3838c44
+Author:     Laura Camellini <jilt@jeeltcraft.com>
+AuthorDate: Sat Aug 8 14:51:15 2026 +0200
+Commit:     Laura Camellini <jilt@jeeltcraft.com>
+CommitDate: Sat Aug 8 14:51:15 2026 +0200
+
+    navigation and lesson pages

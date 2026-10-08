@@ -1,6 +1,6 @@
 <template>
   <div class="deck" ref="deckEl" @click="onDeckClick">
-    <button class="exit-btn" @click.stop="emit('navigate', 'lezione')">← Lezione</button>
+    <a href="https://itch.io/jilt" target="_blank" rel="noreferrer" class="exit-btn" style="text-decoration:none;display:inline-block;">← Lezione</a>
 
 
   <!-- 1 · TITOLO -->
@@ -283,8 +283,8 @@ curl https://api.8004scan.io/api/v1/agents/84532/<span class="k">&lt;agentId&gt;
       <div class="card card-strong"><div class="label">Cosa proteggere</div><div class="text">I dati dello studente non lasciano il perimetro: modello locale o enclave, vault, allowlist dichiarata dal docente.</div></div>
       <div class="card card-strong"><div class="label">Cosa esporre</div><div class="text">L'agente che lo studente costruisce ha un passaporto pubblico: cosa può fare, cosa non può, cosa dicono gli altri.</div></div>
     </div>
-    <p class="body animate-in mt-md"><a href="https://jeeltcraft.com/#lezione" target="_blank" style="color:inherit;text-decoration:underline;text-decoration-color:var(--c-primary);">L'esercizio</a>: costruire un agente, dichiararne i confini, registrarlo, farsi lasciare un feedback da un compagno. <span class="text-emphasis">Il Panopticon rovesciato come alfabetizzazione.</span></p>
-    <div class="notes" :class="{ visible: notesVisible && current === 16 }">Collegamento al tema: non espellere l'IA dalla scuola, ma renderla ambiente tecnico leggibile. Questo è il modulo 07 del mio corso (jeeltcraft.com/#lezione): gli studenti non usano un agente, ne costruiscono uno e ne dichiarano pubblicamente i confini. Imparano la differenza fra promessa e architettura facendola.</div>
+    <p class="body animate-in mt-md"><a href="https://itch.io/jilt" target="_blank" style="color:inherit;text-decoration:underline;text-decoration-color:var(--c-primary);">L'esercizio</a>: costruire un agente, dichiararne i confini, registrarlo, farsi lasciare un feedback da un compagno. <span class="text-emphasis">Il Panopticon rovesciato come alfabetizzazione.</span></p>
+    <div class="notes" :class="{ visible: notesVisible && current === 16 }">Collegamento al tema: non espellere l'IA dalla scuola, ma renderla ambiente tecnico leggibile. Questo è il modulo 07 del mio corso (itch.io/jilt): gli studenti non usano un agente, ne costruiscono uno e ne dichiarano pubblicamente i confini. Imparano la differenza fra promessa e architettura facendola.</div>
   </div>
 
   <!-- 17 · TAKEAWAY -->
@@ -303,7 +303,7 @@ curl https://api.8004scan.io/api/v1/agents/84532/<span class="k">&lt;agentId&gt;
     <div class="divider animate-in"></div>
     <div class="grid-2 animate-in">
       <ul class="bullet-list">
-        <li><b>Lezione completa:</b> <a href="https://jeeltcraft.com/#lezione" target="_blank">jeeltcraft.com/#lezione</a> · sezione 07</li>
+         <li><b>Lezione completa:</b> <a href="https://itch.io/jilt" target="_blank">itch.io/jilt</a> · sezione 07</li>
         <li><b>Standard:</b> <a href="https://eips.ethereum.org/EIPS/eip-8004" target="_blank">eips.ethereum.org/EIPS/eip-8004</a></li>
         <li><b>Explorer:</b> <a href="https://8004scan.io/" target="_blank">8004scan.io</a> · <a href="https://best-practices.8004scan.io/" target="_blank">best-practices</a></li>
       </ul>
@@ -328,7 +328,7 @@ curl https://api.8004scan.io/api/v1/agents/84532/<span class="k">&lt;agentId&gt;
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const emit = defineEmits<{
-  (e: 'navigate', page: 'lesson' | 'lezione' | 'home'): void
+  (e: 'navigate', page: 'home'): void
 }>()
 
 const total = 19
@@ -345,7 +345,7 @@ const onKey = (e: KeyboardEvent) => {
   if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next() }
   if (e.key === 'ArrowLeft') { e.preventDefault(); prev() }
   if (e.key === 'n' || e.key === 'N') notesVisible.value = !notesVisible.value
-  if (e.key === 'Escape') emit('navigate', 'lezione')
+  if (e.key === 'Escape') window.open('https://itch.io/jilt', '_blank')
 }
 
 const onDeckClick = (e: MouseEvent) => {

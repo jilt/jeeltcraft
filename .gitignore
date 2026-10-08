@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# OPencode configurations and session files
+.opencode/
+
+# Private repositories that should not be tracked in this repo
+jeeltcraft-lesson/

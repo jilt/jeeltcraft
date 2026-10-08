@@ -7,7 +7,6 @@
       <nav class="nav">
          <button @click="navigateTo('ai')">AI</button>
          <button @click="navigateTo('web3')">Web3</button>
-         <button @click="navigateTo('lesson')">Agents</button>
         <a
           href="https://www.linkedin.com/in/jeeltcraft"
           target="_blank"
@@ -21,8 +20,6 @@
      <Home v-if="page === 'home'" :key="'home'" @navigate="navigateTo($event)" />
      <AIDev v-else-if="page === 'ai'" :key="'ai'" />
      <Web3Dev v-else-if="page === 'web3'" :key="'web3'" />
-     <Lesson v-else-if="page === 'lesson'" :key="'lesson'" @navigate="navigateTo($event)" />
-     <Lezione v-else-if="page === 'lezione'" :key="'lezione'" />
      <EPrivacyDeck v-else-if="page === 'eprivacy'" :key="'eprivacy'" @navigate="navigateTo($event)" />
 
     <CreatorLinks />
@@ -34,16 +31,14 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import Home from './pages/Home.vue'
 import AIDev from './pages/AIDev.vue'
 import Web3Dev from './pages/Web3Dev.vue'
-import Lesson from './pages/Lesson.vue'
-import Lezione from './pages/Lezione.vue'
 import EPrivacyDeck from './pages/EPrivacyDeck.vue'
 import CreatorLinks from './components/CreatorLinks.vue'
 
-type PageKey = 'home' | 'ai' | 'web3' | 'lesson' | 'lezione' | 'eprivacy'
+type PageKey = 'home' | 'ai' | 'web3' | 'eprivacy'
 
 const page = ref<PageKey>('home')
 
-const validPages = new Set<PageKey>(['home', 'ai', 'web3', 'lesson', 'lezione', 'eprivacy'])
+const validPages = new Set<PageKey>(['home', 'ai', 'web3', 'eprivacy'])
 
 const navigateTo = (newPage: PageKey) => {
   if (validPages.has(newPage)) {
